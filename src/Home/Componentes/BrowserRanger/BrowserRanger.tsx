@@ -8,7 +8,7 @@ const StyleItens= 'flex flex-col items-center'
 
 const BrowserHome= ()=>{
     return(
-        <section className="w-full h-[650px] flex flex-col items-center justify-center gap-16">
+        <section className="w-full h-[650px] flex flex-col items-center justify-center gap-14">
            <div className="flex flex-col items-center">
             <h3 className="text-[32px] font-bold">Browse The Range</h3>
             <p className="text-[18px] text-[#666666]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
