@@ -1,63 +1,86 @@
-type ItensType ={
+import ImgIten1 from "./ImgItens/image1.png"
+import ImgIten2 from "./ImgItens/image2.png"
+import ImgIten3 from "./ImgItens/image3.png"
+import ImgIten4 from "./ImgItens/image4.png"
+import ImgIten5 from "./ImgItens/image5.png"
+import ImgIten6 from "./ImgItens/image6.png"
+import ImgIten7 from "./ImgItens/image7.png"
+import ImgIten8 from "./ImgItens/image8.png"
+
+
+
+export type ItensType ={
     titleIten: string,
     NameIten: string,
     Price: string,
-    Discount: string
+    Discount: string,
+    ItenImg: string
 }
 
-const ItenOne: ItensType ={
+export const ArrListItens: ItensType[] = [
+    
+    {
     titleIten: "Syltherine",
     NameIten: "Stylish cafe chair",
     Price: "Rp 2.500.000",
-    Discount: "Rp 3.500.000"
-}
+    Discount: "Rp 3.500.000",
+    ItenImg: ImgIten1
+    },
 
-const ItenTwo: ItensType ={
+   {
     titleIten: "Leviosa",
     NameIten: "Stylish cafe chair",
     Price: "Rp 2.500.000",
-    Discount: ""
-}
+    Discount: "",
+    ItenImg: ImgIten2
+   },
 
-const ItenTree: ItensType ={
+   {
     titleIten: "Lolito",
     NameIten: "Luxury big sofa",
     Price: "Rp 7.000.000",
-    Discount: "Rp 14.000.000"
-}
+    Discount: "Rp 14.000.000",
+    ItenImg: ImgIten3
+   },
 
-const ItenFor: ItensType ={
+   {
     titleIten: "Respira",
     NameIten: "Outdoor bar table and stool",
     Price: "Rp 500.000",
-    Discount: ""
-}
+    Discount: "",
+    ItenImg: ImgIten4
+   },
 
-const ItenFive: ItensType ={
+   {
     titleIten: "Grifo",
     NameIten: "Night lamp",
     Price: "Rp 1.500.000",
-    Discount: ""
-}
+    Discount: "",
+    ItenImg: ImgIten5
+   },
 
-const ItenSix: ItensType ={
+    {
     titleIten: "Muggo",
     NameIten: "Small mug",
     Price: "Rp 150.000",
-    Discount: ""
-}
+    Discount: "",
+    ItenImg: ImgIten6
+    },
 
-const ItenSeven: ItensType ={
+   {
     titleIten: "Pingky",
     NameIten: "Cute bed set",
     Price: "Rp 7.000.000",
-    Discount: ""
-}
+    Discount: "",
+    ItenImg: ImgIten7
+   },
 
-const ItenEight: ItensType ={
+   {
     titleIten: "Potty",
     NameIten: "Minimalist flower pot",
     Price: "Rp 500.000",
-    Discount: ""
-}
+    Discount: "",
+    ItenImg: ImgIten8
+   }]
+
 
