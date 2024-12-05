@@ -1,5 +1,6 @@
 import Icon from "./icon/IconHeader.png"
 import {Link} from "react-router-dom";
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 
 /*icones */
 import { FaUser } from "react-icons/fa"
@@ -25,8 +26,12 @@ const Header= ()=>{
 
             {/*user*/}
             <div className="flex flex-row items-center justify-around w-[100px]">
-                <p className="flex flex-row items-center"><Link to="./Login"><FaUser />!</Link></p>
-                <FaCartShopping />
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+                <Link className="flex flex-row items-center" to="/Login"><FaUser />!</Link>
+            </SignedOut>
             </div>
          </header>
         </>
