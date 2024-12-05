@@ -5,12 +5,11 @@ import BrowserHome from "./Componentes/BrowserRanger/BrowserRanger.tsx";
 import Destaque from "./Componentes/Productsdestac/ProductsHome.tsx";
 import Carrosel from "./Componentes/carrosel/carrosel.tsx";
 import FileImg from "./Componentes/galeriaItens/Galeria.tsx";
+import { Outlet } from "react-router-dom";
 
 const HomePage= ()=>{
-    console.log('entrou')
     return(
         <>
-         <Header />
          <BannerSection />
          <BrowserHome />
          <Destaque />

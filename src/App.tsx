@@ -1,11 +1,13 @@
-import HomePage from "./Home/Home.tsx"
+import Header from "./Componentes/Header/Header.tsx"
+import { Outlet } from "react-router-dom"
 
 
 function App() {
 
   return (
     <>
-     <HomePage/>
+     <Header />
+     <Outlet />
     </>
   )
 }

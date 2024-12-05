@@ -1,4 +1,5 @@
-
+import Icon from "./icon/IconHeader.png"
+import {Link} from "react-router-dom";
 
 /*icones */
 import { FaUser } from "react-icons/fa"
@@ -10,13 +11,13 @@ const Header= ()=>{
 
             {/*logo*/}
             <div className="flex flex-row w-[178px] items-center justify-between">
-                
+                <img src={Icon} />
                 <h1 className="font-bold text-[35px]">Furniro</h1>
             </div>
 
             {/*lista*/}
             <ul className="flex flex-row w-[400px] align-center justify-between">
-                <li className="font-semibold">Home</li>
+                <li className="font-semibold"><Link to="/">Home</Link></li>
                 <li className="font-semibold">Shop</li>
                 <li className="font-semibold">About</li>
                 <li className="font-semibold">Contact</li>
@@ -24,7 +25,7 @@ const Header= ()=>{
 
             {/*user*/}
             <div className="flex flex-row items-center justify-around w-[100px]">
-                <p className="flex flex-row items-center"><FaUser />!</p>
+                <p className="flex flex-row items-center"><Link to="./Login"><FaUser />!</Link></p>
                 <FaCartShopping />
             </div>
          </header>
