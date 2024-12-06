@@ -1,18 +1,27 @@
+import { SignInButton } from "@clerk/clerk-react"
+import { FaGoogle, FaFacebook } from "react-icons/fa"
 
 const Login= ()=>{
     return(
-        <div className="m-auto bg-[#FFF3E3] w-[610px] h-[430px] flex flex-col items-center justify-center gap-10 p-5 mt-6 rounded-[15px]">
-            <h1 className="text-[52px] text-center w-full text-[#B88E2F] font-bold">Wellcome!</h1>
-            <form className="h-72 flex flex-col gap-11">
-                <label className="flex flex-col gap-1">
-                    <p className="font-semibold text-black">enter your email</p>
-                    <input className="w-[300px] bg-transparent border-b outline-none" placeholder="Add your email" type="email" />
-                </label>
-                <label className="flex flex-col gap-1">
-                    <p className="font-semibold text-black" >enter your password</p>
-                    <input className="w-[300px] bg-transparent border-b outline-none" placeholder="Add your password" type="password" />
-                </label>
-            </form>
+        <div className="m-auto bg-[#FFF3E3] w-[400px] h-[300px] flex flex-col items-center my-20 justify-start gap-9 rounded-[15px]">
+            <div>
+                <h1 className="text-[52px] text-center w-full text-[#B88E2F] font-bold">Wellcome!</h1>
+                <p className="text-center text-[#9F9F9F]">Log in with your social network</p>
+            </div>
+            <div className="flex flex-col w-[240px] justify-around h-[100px]">
+             <SignInButton>
+                <span className="border flex items-center justify-around bg-white py-2 px-5 rounded-[8px] shadow cursor-pointer">
+                 <FaGoogle className="w-6 h-6" />
+                 <p className="w-[150px] text-[#9F9F9F]">Google Acount</p>
+                </span>
+             </SignInButton>
+             <SignInButton>
+                <span className="border flex items-center justify-around bg-white py-2 px-5 rounded-[8px] shadow cursor-pointer">
+                 <FaFacebook className="w-6 h-6" />
+                 <p className="w-[150px] text-[#9F9F9F]">Facebook Acount</p>
+                </span>
+             </SignInButton>
+            </div>
          </div>
     )
 }

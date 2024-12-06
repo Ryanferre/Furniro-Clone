@@ -19,7 +19,7 @@ const Header= ()=>{
             {/*lista*/}
             <ul className="flex flex-row w-[400px] align-center justify-between">
                 <li className="font-semibold"><Link to="/">Home</Link></li>
-                <li className="font-semibold">Shop</li>
+                <li className="font-semibold"><Link to="/shop">Shop</Link></li>
                 <li className="font-semibold">About</li>
                 <li className="font-semibold">Contact</li>
             </ul>

@@ -3,7 +3,7 @@ import {ArrListItens, ItensType} from "./interItens"
 
 const Destaque: React.FC = ()=>{
     return(
-        <section className="w-[1236px] h-[965px] m-auto flex flex-col items-center justify-between">
+        <section className="w-[1236px] h-[1014px] m-auto flex flex-col items-center gap-7">
             <div className="flex flex-col items-center gap-6">
                 <h4 className="text-[40px] font-bold">Our Products</h4>
                 <ul className="flex flex-row justify-center flex-wrap gap-6">

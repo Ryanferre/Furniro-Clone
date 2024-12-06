@@ -1,0 +1,35 @@
+{
+    "products": [
+    {
+        "id": 1,
+        "titleName": "Syltherine",
+        "description": "Stylish cafe chair",
+        "priceTotal": "Rp 3.500.000",
+        "priceDiscount": "Rp 2.500.000",
+        "imgItem": "https://primertesteryan.s3.us-east-2.amazonaws.com/Documents/image2.png"
+    },
+    {
+        "id": 2,
+        "titleName": "Leviosa",
+        "description": "Stylish cafe chair",
+        "priceTotal": "",
+        "priceDiscount": "Rp 2.500.000",
+        "imgItem": "https://primertesteryan.s3.us-east-2.amazonaws.com/Documents/image1.png"
+    },
+    {
+        "id": 3,
+        "titleName": "Lolito",
+        "description": "Luxuri big sofa",
+        "priceTotal": "Rp 14.00.000",
+        "priceDiscount": "Rp 7.000.000",
+        "imgItem": "https://primertesteryan.s3.us-east-2.amazonaws.com/Documents/image3.png"
+    },
+    {
+        "id": 4,
+        "titleName": "Respira",
+        "description": "Outdoor bar table and stool",
+        "priceTotal": "",
+        "priceDiscount": "Rp 500.000",
+        "imgItem": "https://primertesteryan.s3.us-east-2.amazonaws.com/Documents/image4.png"
+    }]
+}
