@@ -20,7 +20,7 @@ const Header= ()=>{
             <ul className="flex flex-row w-[400px] align-center justify-between">
                 <li className="font-semibold"><Link to="/">Home</Link></li>
                 <li className="font-semibold"><Link to="/shop">Shop</Link></li>
-                <li className="font-semibold">About</li>
+                <li className="font-semibold"><Link to="/Adress">About</Link></li>
                 <li className="font-semibold">Contact</li>
             </ul>
 
@@ -32,6 +32,7 @@ const Header= ()=>{
             <SignedOut>
                 <Link className="flex flex-row items-center" to="/Login"><FaUser />!</Link>
             </SignedOut>
+            <FaCartShopping />
             </div>
          </header>
         </>

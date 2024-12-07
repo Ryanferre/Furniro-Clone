@@ -1,8 +1,11 @@
-import ShopBanner from "./imgBanner/ShopBanner.png"
-import ListItens from "./ComponentesShop/ShopItens"
+import ShopBanner from "../imgBanner/ShopBanner.png"
+import ListItens from "./ComponentesShop/itensList/ShopItens"
+import FilterBox from "./ComponentesShop/ModalFilter/ModalFilter"
 
 
 const ShopItens= ()=>{
+
+
     return(
         <>
          <section>
@@ -12,13 +15,14 @@ const ShopItens= ()=>{
                     <p className="font-semibold text-[16px]">Home</p>
                     <div className="flex flex-col items-center justify-center h-[20px] gap-[3px] mt-[4px]">
                         <span className="content boder w-[10.4px] h-[2px] transition-transform rotate-[38deg] inline-block bg-black"></span>
-                        <span className="content boder w-[10.4px] h-[2px] transition-transform -rotate-[43deg] inline-block bg-black"></span>
+                        <span className="content boder w-[10.4px] h-[2px] transition-transform -rotate-[39deg] inline-block bg-black"></span>
                     </div>
                     <p>Shop</p>
                 </div>
             </div>
 
-            <section className="flex flex-row bg-[#F9F1E7] py-5 px-20 items-center justify-between">
+            <section className="flex flex-row bg-[#F9F1E7] py-5 px-20 items-center relative justify-between">
+                <FilterBox />
                 <div className="flex flex-row items-center justify-around w-[400px]">
                     <button className="flex flex-row items-center gap-[10px]">
                         <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">

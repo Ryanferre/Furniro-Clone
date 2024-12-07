@@ -6,6 +6,7 @@ import App from './App.tsx'
 import HomePage from './Home/Home.tsx'
 import Login from './LoginPage/login.tsx'
 import ShopItens from './pagesExternas/Shop/shop.tsx'
+import PageCep from './pagesExternas/Cep/pageCep.tsx'
 import { ClerkProvider } from '@clerk/clerk-react';
 
 const clerkFrontendApi = "https://enjoyed-husky-33.clerk.accounts.dev";
@@ -25,6 +26,10 @@ const rounter= createBrowserRouter([
     {
       path: '/shop',
       element: <ShopItens/>
+    },
+    {
+      path: '/Adress',
+      element: <PageCep/>
     }]
   }
 ])
