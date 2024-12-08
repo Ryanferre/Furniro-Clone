@@ -9,6 +9,9 @@ type CepData= {
     localidade: string,
     estado: string
 }
+
+const Checkstyle= "flex flex-row gap-3"
+const styleTittle= "font-semibold text-[20px]"
 const PageCep = ()=>{
     const [Cep, setCep]= useState("")
     const [ResApi, SetRes]= useState<CepData>({ Cep: "", regiao: "", logradouro: "", localidade: "", estado: ""})
@@ -22,7 +25,6 @@ const PageCep = ()=>{
                 }
             )
         }
-
         getCep()
     }, [Cep])
     return(
@@ -39,69 +41,116 @@ const PageCep = ()=>{
                 </div>
             </div>
 
-            <section>
-                <ul>
-                    <li>
-                        <div className="flex flex-row">
-                            <label>
-                              <p>Fist Name</p>
-                              <input type="text" />
-                            </label>
-                            <label>
-                              <p>Last Name</p>
-                              <input type="text" />
-                            </label>
+            <div className="py-[60px] px-[150px] h-[900px] flex flex-row justify-between">
+                <section className="flex flex-col gap-8 h-full">
+                    <h2 className="text-[30px] font-bold">Billing details</h2>
+                    <ul className="h-full flex flex-col justify-between w-[293px]">
+                        <li>
+                            <div className="flex flex-row justify-start gap-4">
+                                <label className="flex flex-col justify-between gap-3">
+                                <p>Fist Name</p>
+                                <input className="border h-[48px] w-[137px] rounded-[5px]" type="text" />
+                                </label>
+                                <label className="flex flex-col justify-between gap-4">
+                                <p>Last Name</p>
+                                <input className="border h-[48px] w-[137px] rounded-[5px]" type="text" />
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>Zip code</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" onChange={(e)=> setCep(e.target.value)} />
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>Country / Region</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" value={ResApi.regiao} />
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>street address</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" value={ResApi.logradouro}/>
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>Town / city</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" value={ResApi.localidade}/>
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>Province</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" value={ResApi.estado}/>
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>Add-on Adress</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" />
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-between gap-2">
+                            <p>Email adress</p>
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" />
+                        </label>
+                        </li>
+                        <li>
+                        <label className="flex flex-col justify-end h-[60px]">
+                            <input className="border h-[40px] rounded-[5px] w-[290px]" type="text" placeholder="Additional information"/>
+                        </label>
+                        </li>
+                    </ul>
+                </section>
+
+                <div className="w-[450px] flex flex-col h-[700px]">
+                    <div>
+                        <div className="flex flex-row w-full justify-between items-center h-[200px] border-b">
+                            <ul className="flex flex-col gap-[12px]">
+                            <p className={styleTittle}>Product</p>
+                                <li><p>Guard Sofar</p></li>
+                                <li>Sub total</li>
+                                <li>Total</li>
+                            </ul>
+                            <ul className="flex flex-col gap-[12px]">
+                            <p className={styleTittle}>Subtotal</p>
+                                <li><p>Rs.250,000.00</p></li>
+                                <li><p>Rs.250,000.00</p></li>
+                                <li><p className="text-[#B88E2F] font-bold text-[22px]">Rs.250,000.00</p></li>
+                            </ul>
                         </div>
-                    </li>
-                    <li>
-                    <label>
-                        <p>Zip code</p>
-                        <input type="text" onChange={(e)=> setCep(e.target.value)} />
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <p>Country / Region</p>
-                        <input type="text" value={ResApi.regiao} />
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <p>street address</p>
-                        <input type="text" value={ResApi.logradouro}/>
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <p>Town / city</p>
-                        <input type="text" value={ResApi.localidade}/>
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <p>Province</p>
-                        <input type="text" value={ResApi.estado}/>
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <p>Add-on Adress</p>
-                        <input type="text" />
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <p>Email adress</p>
-                        <input type="text" />
-                    </label>
-                    </li>
-                    <li>
-                    <label>
-                        <input type="text" placeholder="Additional information"/>
-                    </label>
-                    </li>
-                </ul>
-            </section>
+                        <article className="h-[280px] flex flex-col justify-around pt-2">
+                            <label className={Checkstyle}>
+                            <input type="checkbox" />
+                            <p>Direct Banck Transfer</p>
+                            </label>
+                            <p>Make your payment directly into our bank account. 
+                            Please use your Order ID as the payment reference. 
+                            Your order will not be shipped until the funds have 
+                            cleared in our account.</p>
+                            <div className="h-[54px] flex flex-col justify-between">
+                                <label className={Checkstyle}>
+                                  <input type="checkbox" />
+                                  <p>Direct Banck Transfer</p>
+                                </label>
+                                <label className={Checkstyle}>
+                                  <input type="checkbox" />
+                                  <p>Direct Banck Transfer</p>
+                                </label>
+                            </div>
+                            <p className="text-[16px]">Your personal data will be used to support your 
+                            experience throughout this website, to manage access
+                            to your account, and for other purposes described in our
+                            privacy policy.</p>
+                        </article>
+                    </div>
+                    <button>Palce order</button>
+                </div>
+            </div>
         </section>
     )
 }

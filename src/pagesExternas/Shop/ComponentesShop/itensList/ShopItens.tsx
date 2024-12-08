@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import  axios  from "axios"
+import FilterItens from "../../HookCustum/ContexData"
 
 type itensJson = {
     id: number,
@@ -7,13 +8,15 @@ type itensJson = {
     description: string,
     priceTotal: string,
     priceDiscount: string,
-    imgItem: string
+    imgItem: string,
+    name: string
 }
 const StyleIconsHover= "flex flex-row items-center gap-[2px]"
 const IconDescription ="text-white font-semibold text-[16px]"
 
 const ListItens=()=>{
     const [itens, setItens] =useState <itensJson []>([])
+    const {itensData}= useContext(FilterItens)
 
     useEffect(()=>{
         
@@ -22,11 +25,19 @@ const ListItens=()=>{
             }).catch((err)=>{
                 console.log(err)
             })
-    }, [])
+    }, [])//vai ser acionando na entrada da pagina
 
     useEffect(()=>{
-        console.log(itens[0])
-    }, [itens])
+        axios.get(`http://localhost:3001/products?name=${itensData}`).then((response)=>{
+            setItens(response.data)
+        }).catch((err)=>{
+            console.log("esse"+err)
+        })
+    }, [itensData])//vai ser acionado quando o dado do contexto for modificado
+
+    useEffect(()=>{
+        console.log(itensData)
+    }, [itensData])
     return(
         <section className="px-[80px] pt-[70px]">
             <ul className="flex flex-row justify-around flex-wrap gap-4">
