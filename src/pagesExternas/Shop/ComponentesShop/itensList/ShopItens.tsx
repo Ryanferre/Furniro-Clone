@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import  axios  from "axios"
 import FilterItens from "../../HookCustum/ContexData"
+import { useSelector, useDispatch } from "react-redux";
 
 type itensJson = {
     id: number,
@@ -14,9 +15,24 @@ type itensJson = {
 const StyleIconsHover= "flex flex-row items-center gap-[2px]"
 const IconDescription ="text-white font-semibold text-[16px]"
 
+
 const ListItens=()=>{
     const [itens, setItens] =useState <itensJson []>([])
-    const {itensData}= useContext(FilterItens)
+    const {itensData, getItenscart, ItensCart}= useContext(FilterItens)
+    const [ItenMore, setMore]= useState<number>(0)
+
+    const StateCart = useSelector((state) => state.Statecart);
+
+    const dispatch = useDispatch();
+
+
+    const AddItem = (e) => {
+        setMore((prev)=> prev + 1)
+        getItenscart(ItenMore)
+        console.log(ItensCart)
+        dispatch({ type: "INCREMENT", payload: { id: e.target, name: "Novo Item" }});
+    };
+
 
     useEffect(()=>{
         
@@ -35,9 +51,6 @@ const ListItens=()=>{
         })
     }, [itensData])//vai ser acionado quando o dado do contexto for modificado
 
-    useEffect(()=>{
-        console.log(itensData)
-    }, [itensData])
     return(
         <section className="px-[80px] pt-[70px]">
             <ul className="flex flex-row justify-around flex-wrap gap-4">
@@ -55,9 +68,9 @@ const ListItens=()=>{
                             </div>
                           </div>
                           {/*Contedo do hover */}
-                          <div className="absolute opacity-0 pointer-events-none hover:pointer-events-auto flex flex-col items-center justify-center inset-0 h-full hover:bg-[#0000008a] cursor-pointer">
+                          <div className="absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-full cursor-pointer">
                                 <div className="w-full h-[110px] flex flex-col items-center justify-between pt-5">
-                                    <button className="w-[202px] h-[48px] bg-white font-semibold text-[16px] text-[#B88E2F]">Add to cart</button>
+                                    <button className="w-[202px] h-[48px] bg-white font-semibold text-[16px] text-[#B88E2F]" onClick={AddItem}>Add to cart</button>
                                     <ul className="flex flex-row items-center justify-between w-[230px]">
                                         <li className={StyleIconsHover}>
                                             <svg className="w-[16px] h-[30px]" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">

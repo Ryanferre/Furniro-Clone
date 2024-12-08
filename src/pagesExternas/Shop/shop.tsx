@@ -14,7 +14,6 @@ const ShopItens= ()=>{
     }
     return(
         <>
-        <ItenSearch>
          <section>
             <div className="w-full h-[310px] bg-contain flex flex-col items-center justify-center" style={{backgroundImage: `url(${ShopBanner}`}}>
                 <h1 className="font-semibold text-[44px]">Shop</h1>
@@ -59,7 +58,6 @@ const ShopItens= ()=>{
             </section>
             <ListItens />
          </section>
-         </ItenSearch>
         </>
     )
 }

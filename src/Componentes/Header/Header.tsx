@@ -1,11 +1,14 @@
 import Icon from "./icon/IconHeader.png"
 import {Link} from "react-router-dom";
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
+import AddedItencart from "./componentCart/cartAdded";
 
 /*icones */
 import { FaUser } from "react-icons/fa"
-import { FaCartShopping } from "react-icons/fa6"
+
 const Header= ()=>{
+
+    console.log('header atualizado')
     return(
         <>
          <header className="flex flex-row items-center justify-between px-10 h-[75px]">
@@ -32,7 +35,7 @@ const Header= ()=>{
             <SignedOut>
                 <Link className="flex flex-row items-center" to="/Login"><FaUser />!</Link>
             </SignedOut>
-            <FaCartShopping />
+            <AddedItencart />
             </div>
          </header>
         </>
