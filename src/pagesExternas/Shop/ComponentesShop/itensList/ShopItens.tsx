@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import  axios  from "axios"
 import FilterItens from "../../HookCustum/ContexData"
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 type itensJson = {
     id: number,
@@ -33,7 +34,6 @@ const ListItens=()=>{
         dispatch({ type: "INCREMENT", payload: { id: e.target, name: "Novo Item" }});
     };
 
-
     useEffect(()=>{
         
             axios.get("http://localhost:3001/products").then((response)=>{
@@ -55,7 +55,8 @@ const ListItens=()=>{
         <section className="px-[80px] pt-[70px]">
             <ul className="flex flex-row justify-around flex-wrap gap-4">
                 {itens.map((Products)=>(
-                    <li className="w-[265px] relative" key={Products.id}>
+                 <Link key={Products.id} to={`/Productcart/${Products.id}`}>
+                        <li className="w-[265px] relative" key={Products.id}>
                         {/*conteudo do json server */}
                         <div className="flex flex-col items-center bg-[#F4F5F7]">
                           <img className="w-full" src={Products.imgItem} />
@@ -68,7 +69,7 @@ const ListItens=()=>{
                             </div>
                           </div>
                           {/*Contedo do hover */}
-                          <div className="absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-full cursor-pointer">
+                          <div className={`id${Products.id} absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-full cursor-pointer`}>
                                 <div className="w-full h-[110px] flex flex-col items-center justify-between pt-5">
                                     <button className="w-[202px] h-[48px] bg-white font-semibold text-[16px] text-[#B88E2F]" onClick={AddItem}>Add to cart</button>
                                     <ul className="flex flex-row items-center justify-between w-[230px]">
@@ -95,6 +96,7 @@ const ListItens=()=>{
                             </div>
                           </div>
                     </li>
+                 </Link>
                 ))}
             </ul>
         </section>

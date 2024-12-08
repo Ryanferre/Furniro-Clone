@@ -2,8 +2,6 @@ import { useState } from "react"
 import ShopBanner from "../imgBanner/ShopBanner.png"
 import ListItens from "./ComponentesShop/itensList/ShopItens"
 import FilterBox from "./ComponentesShop/ModalFilter/ModalFilter"
-import { ItenSearch } from "./HookCustum/ContexData"
-
 
 const ShopItens= ()=>{
     const [moveList, setMove]= useState('')
