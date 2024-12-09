@@ -35,7 +35,8 @@ const ListProctRelated= ()=>{
 
         const filterElement = itensl.find((objeto) => objeto.id === idElement)
 
-        dispatch({ type: "INCREMENT", payload: { id: filterElement }});
+        
+        dispatch({ type: "INCREMENT", payload: { filterElement }});
     };
 
     useEffect(()=>{
