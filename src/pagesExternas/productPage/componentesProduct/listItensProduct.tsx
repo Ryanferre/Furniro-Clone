@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import  axios  from "axios"
-import FilterItens from "../../HookCustum/ContexData"
+import FilterItens from "../../Shop/HookCustum/ContexData";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -16,10 +16,9 @@ type itensJson = {
 const StyleIconsHover= "flex flex-row items-center gap-[2px]"
 const IconDescription ="text-white font-semibold text-[16px]"
 
-
-const ListItens=()=>{
-    const [itens, setItens] =useState <itensJson []>([])
-    const {itensData, getItenscart, ItensCart}= useContext(FilterItens)
+const ListProctRelated= ()=>{
+    const [itensl, setItens] =useState <itensJson []>([])
+    const { getItenscart, ItensCart}= useContext(FilterItens)
     const [ItenMore, setMore]= useState<number>(0)
 
     const StateCart = useSelector((state) => state.Statecart);
@@ -30,47 +29,45 @@ const ListItens=()=>{
     const AddItem = (e) => {
         setMore((prev)=> prev + 1)
         getItenscart(ItenMore)
-        console.log(ItenMore)
-        dispatch({ type: "INCREMENT", payload: { id: e.currentTarget.closest('li'), name: "Novo Item" }});
+        console.log(itensl)
+        const findElement= e.currentTarget.closest('li')
+        const idElement= findElement.id
+
+        const filterElement = itensl.find((objeto) => objeto.id === idElement)
+
+        dispatch({ type: "INCREMENT", payload: { id: filterElement }});
     };
 
     useEffect(()=>{
         
-            axios.get("http://localhost:3001/products").then((response)=>{
+            axios.get("http://localhost:3001/products?_start=0&_limit=4").then((response)=>{
                 setItens(response.data)
+                console.log(response.data)
             }).catch((err)=>{
                 console.log(err)
             })
     }, [])//vai ser acionando na entrada da pagina
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/products?name=${itensData}`).then((response)=>{
-            setItens(response.data)
-        }).catch((err)=>{
-            console.log("esse"+err)
-        })
-    }, [itensData])//vai ser acionado quando o dado do contexto for modificado
-
     return(
         <section className="px-[80px] pt-[70px]">
             <ul className="flex flex-row justify-around flex-wrap gap-4">
-                {itens.map((Products)=>(
-                        <li className="w-[265px] relative" key={Products.id}>
+                {itensl.map((Productsl)=>(
+                        <li className="w-[265px] relative" id={`${Productsl.id}`}>
                         {/*conteudo do json server */}
                         <div className="flex flex-col items-center bg-[#F4F5F7]">
-                          <img className="w-full" src={Products.imgItem} />
-                          <Link key={Products.id} to={`/Productcart/${Products.id}`}>
+                          <img className="w-full" src={Productsl.imgItem} />
+                          <Link key={Productsl.id} to={`/Productcart/${Productsl.id}`}>
                           <div className="w-[230px] h-[120px] flex flex-col gap-1 pt-2">
-                            <p className="font-semibold text-[19px]">{Products.titleName}</p>
-                            <p>{Products.description}</p>
+                            <p className="font-semibold text-[19px]">{Productsl.titleName}</p>
+                            <p>{Productsl.description}</p>
                             <div className="flex flex-row items-center w-full justify-between">
-                            <p className="font-semibold text-[19px]">{Products.priceDiscount}</p>
-                              <s className="text-[#898989] font-medium text-[16px]">{Products.priceTotal}</s>
+                            <p className="font-semibold text-[19px]">{Productsl.priceDiscount}</p>
+                              <s className="text-[#898989] font-medium text-[16px]">{Productsl.priceTotal}</s>
                             </div>
                           </div>
                           </Link>
                           {/*Contedo do hover */}
-                          <div className={`id${Products.id} absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-[280px] cursor-pointer`}>
+                          <div className={`id${Productsl.id} absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-[280px] cursor-pointer`}>
                                 <div className="w-full h-[110px] flex flex-col items-center justify-between pt-5">
                                     <button className="w-[202px] h-[48px] bg-white font-semibold text-[16px] text-[#B88E2F]" onClick={AddItem}>Add to cart</button>
                                     <ul className="flex flex-row items-center justify-between w-[230px]">
@@ -103,4 +100,4 @@ const ListItens=()=>{
     )
 }
 
-export default ListItens
+export default ListProctRelated

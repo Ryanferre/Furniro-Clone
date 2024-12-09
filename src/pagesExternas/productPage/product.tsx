@@ -3,6 +3,9 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import FilterItens from "../Shop/HookCustum/ContexData"
 import { useContext } from "react"
+import Aboult from "./componentesProduct/abolt"
+import ListProctRelated from "./componentesProduct/listItensProduct"
+import ModalTocart from "./componentesProduct/modalProduct"
 
 //icones start
 import { FaStar } from "react-icons/fa"
@@ -38,18 +41,44 @@ const ProductPage= ()=>{
                                                         priceDiscount: '',
                                                         imgItem: ''
                                                     })
-    const {ItensCart}= useContext(FilterItens)
+    const {getItenscart, ItensCart}= useContext(FilterItens)
 
-    const [AddTocart, setAdd]= useState<number | undefined>(0)
+    const [AddTocart, setAdd]= useState<number>(0)
+    const [removeTotal, setRemove]= useState<number>(0)
 
+    //adicionar iten
     const Add= ()=>{
         setAdd((evt)=> evt+1)
-        
     }
 
+    //remover iten
     const Remove= ()=>{
         setAdd((evt)=> evt-1)
+        if(AddTocart>0){
+            setRemove((evt=> evt+1))//armazendo a quantidade que foi retirada
+        }else{
+            setRemove(0)
+        }
+        console.log(removeTotal)
     }
+
+    //adicionar total no carrinho
+    const AddToCartItens= ()=>{
+        if(removeTotal>0){//se removeTotal for maior que 0, signifia que retirei
+            getItenscart(ItensCart-removeTotal)
+            setRemove(0)
+            console.log(removeTotal)
+        }else{
+            getItenscart(ItensCart+AddTocart)
+        }
+    }
+
+    //verificar se chegou a 0
+    useEffect(()=>{
+        if(AddTocart < 0){
+            setAdd(0)
+        }
+    }, [AddTocart])
     useEffect(()=>{
         if (itSelectd.length > 0) {
             const selectedItem = itSelectd[0]; 
@@ -108,11 +137,11 @@ const ProductPage= ()=>{
                             <img className={styleListImg} src={objAplid.imgItem} />
                         </li>
                     </ul>
-                    <span className="w-[418px] h-[500px] rounded-[5px]" style={{background: `url(${objAplid.imgItem})`, backgroundSize: 'contain', backgroundPosition: 'center'}}></span>
+                    <span className="w-[418px] h-[500px] rounded-[5px]" style={{background: `url(${objAplid.imgItem})`, backgroundSize: 'cover', backgroundPosition: 'center'}}></span>
                 </div>
                 <div className="flex flex-col justify-between">
                 <div className="w-[560px] h-[560px] border-b border-b-[#D9D9D9]">
-                    <h1 className="text-[42px] font-medium">Asgaard sofa</h1>
+                    <h1 className="text-[42px] font-medium">{objAplid.titleName}</h1>
                     <p className="text-[24px] text-[#9F9F9F] font-semibold">{objAplid.priceDiscount}</p>
                     <div className="w-[250px] h-10 flex flex-row items-center justify-between mt-2">
                         <div className="w-[103px] border-r">
@@ -173,7 +202,7 @@ const ProductPage= ()=>{
                                 <p>{AddTocart}</p>
                                 <button onClick={Add}>+</button>
                             </div>
-                            <button className="border border-black rounded-[8px] w-[255px] text-[20px] font-medium">Add To Cart</button>
+                            <button className="border border-black rounded-[8px] w-[255px] text-[20px] font-medium" onClick={AddToCartItens}>Add To Cart</button>
                         </div>
                     </div>
                     <div className="flex flex-row w-[290px] h-[180px] gap-4 justify-between">
@@ -210,6 +239,9 @@ const ProductPage= ()=>{
                     </div>
                 </div>
             </section>
+            <Aboult Img1={objAplid.imgItem} Img2={objAplid.imgItem} />
+            <ListProctRelated />
+            <ModalTocart />
         </section>
     )
 }

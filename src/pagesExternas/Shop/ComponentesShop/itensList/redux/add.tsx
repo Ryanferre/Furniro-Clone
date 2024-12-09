@@ -7,7 +7,6 @@ const Init= {Statecart: []}//array inicial
 const reducer =(state= Init, action)=>{
     switch (action.type) {
         case "INCREMENT":
-            console.log(state)
             console.log(action.payload)
             return {...state, Statecart: [...state.Statecart, action.payload]}
     

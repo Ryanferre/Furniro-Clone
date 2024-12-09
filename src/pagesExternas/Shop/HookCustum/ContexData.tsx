@@ -5,9 +5,11 @@ interface FilterItensContextType {
   itensData: string;
   moveModal: string;
   ItensCart: number;
+  IdIten: [];
   getData: (e: string) => void;
   moveMargin: (e: string) => void;
   getItenscart: (e: number) => void;
+  setIdIten: (e: number)=> void
 }
 
 // Inicializando o contexto com valores padrão e tipos
@@ -15,9 +17,11 @@ export const FilterItens = createContext<FilterItensContextType>({
   itensData: '',
   moveModal: '96',
   ItensCart: 0,
+  IdIten: [],
   getData: () => {},
   moveMargin: () => {},
-  getItenscart: () => {}
+  getItenscart: () => {},
+  setIdIten: ()=> {}
 });
 
 // Componente Provider para fornecer os dados do contexto
