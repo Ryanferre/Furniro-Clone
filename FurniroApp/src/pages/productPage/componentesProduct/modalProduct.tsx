@@ -1,0 +1,141 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { FaShoppingBag } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
+import ProtectedLink from '../../../Settings/RouterIconCart/ProtetedRoute';
+import { useContext } from 'react';
+import DataCostum from '../../../Settings/HookCostum/Costum';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+type FilterElement = {
+  id: number;
+  titleName: string;
+  priceDiscount: string;
+  imgItem: string;
+  Quant: number
+};
+
+type ItensCart = {
+  filterElement: FilterElement;
+};
+
+
+
+const ModalTocart = () => {
+  const productsState = useSelector((state) => state.Statecart);//pega os dados do array que contem os itens
+  const dispatch = useDispatch(); // Para disparar a ação de romover ou adicionar
+
+  const {MoveModal, ModalViewCart}= useContext(DataCostum)
+
+  // Ação para deletar
+  const deleteItem = (id) => ({
+    type: "DELETE",
+    payload: id, // Passa o id do item para deletar
+  });
+
+  const RemoveItem = (id) => {
+    dispatch(deleteItem(id)); // Dispara a ação DELETE com o id
+  }
+
+  const MoveBanner= (e)=>{
+    const getId= (e.target as HTMLElement).id
+
+    console.log(getId)
+
+    if(getId == '1'){
+      MoveModal('hidden')
+    }
+  }
+    const [AddRepeated, setRepeated] = useState<string []> ([]);// array com os itens independente se esta repetido ou não
+    const [filterRepeated, setItenRepeated]= useState<ItensCart []>([]);//array com os itens filtrados(sem repetições)
+
+
+    //logica para selecionar somente um elemento e seleciona o id
+    useEffect(()=>{
+
+      console.log(productsState)
+      const widthArr= productsState//pega o array que contem os itens
+
+
+      const itensrepten= widthArr.map((elemnt)=>(//cria um array com os id's dos elementos
+        elemnt.filterElement.id//pega o id do elemento
+      ))
+      setRepeated(itensrepten)//guarda o array
+
+      const filterRepeatedItem= productsState.filter((element, i, s)=>(//seleciona somente um elemento
+        i === s.findIndex((e) => e.filterElement.id === element.filterElement.id)
+      )).map((element) => ({...element,...element.filterElement, Quant: 0}));
+
+      setItenRepeated(filterRepeatedItem)
+    }, [productsState])
+
+
+
+    useEffect(()=>{
+      const updatedProducts = [...productsState]; //Faz uma cópia do array original
+
+      for (let i = 0; i < updatedProducts.length; i++) {
+        //Conta quantas vezes o id aparece no array AddRepeated
+        const count = AddRepeated.filter((id) => id === updatedProducts[i].filterElement.id).length;
+    
+        //Atualiza a propriedade Quant com a contagem
+        updatedProducts[i].filterElement.Quant = count;
+      }
+      
+    }, [AddRepeated])
+  
+  return (
+    <section className={`absolute ${ModalViewCart} flex-row justify-end w-full h-[2540px] z-0 inset-0 bg-[#20202050]`} id="1" onClick={MoveBanner}>
+      <div className='bg-white h-[700px] w-[370px] pt-[30px] flex flex-col z-1 justify-between' id="2">
+        <div className='flex flex-col w-[300px] pl-[30px]'>
+          <div className='flex flex-row items-center justify-between'>
+            <h1 className='font-semibold text-[24px]'>Shopping Cart</h1>
+            <FaShoppingBag color="#9F9F9F" />
+          </div>
+          <span className='w-[230px] h-[1px] bg-[#9F9F9F] my-7'></span>
+          <div className="w-[280px] h-[440px] flex flex-col pt-1">
+            {filterRepeated.length > 0 ? (
+              filterRepeated.map((product, i) => {
+                return (
+                  <div key={i} className="w-full h-[76px] flex flex-row justify-between items-center">
+                    <img className='w-[65px] rounded-[5px]' src={product.filterElement.imgItem} alt={product.filterElement.titleName} />
+                    <div className='flex flex-col justify-around h-[70px]'>
+                      <p>{product.filterElement.titleName}</p>
+                      <div className='flex flex-row gap-4'>
+                        <p>{product.filterElement.Quant}</p>
+                        <p>X</p>
+                        <p>{product.filterElement.priceDiscount}</p>
+                      </div>
+                    </div>
+                    <button onClick={() => RemoveItem(product.filterElement.id)}><FaTimes /></button> {/* Passa o id do produto */}
+                  </div>
+                );
+              })
+            ) : (
+              <p>Sem produtos no carrinho.</p>
+            )}
+          </div>
+          <div className='flex flex-row w-[280px] justify-between'>
+            <p className='text-[16px] font-semibold'>Subtotal</p>
+            <p className='text-[#B88E2F] text-[16px] font-semibold'>{filterRepeated.map((e) => parseFloat(e.filterElement.priceDiscount.split('Rp')[1].replace(/\./g, ''))).reduce((acc, curr) => acc + curr, 0)}</p>
+          </div>
+        </div>
+        
+        <span className='w-full h-[1px] bg-[#9F9F9F]'></span>
+        <ul className='flex flex-row w-[320px] ml-[20px] justify-between'>
+          <li>
+            <button className='border border-black rounded-[50px] px-[30px] py-[5px]'><Link to="/Cart">Cart</Link></button>
+          </li>
+          <li>
+            <ProtectedLink to="/Adress"><button className='border border-black rounded-[50px] px-[20px] py-[5px]'>Checkout</button></ProtectedLink>
+          </li>
+          <li>
+            <button className='border border-black rounded-[50px] px-[7px] py-[5px]'>Comparison</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+  );
+};
+
+export default ModalTocart;
