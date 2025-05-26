@@ -1,5 +1,4 @@
-import { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from "react";
 
 type FilterElement = {
   id: number;
@@ -11,15 +10,12 @@ type FilterElement = {
 type ItensCart = {
   filterElement: FilterElement;
 };
-export function filterItens(){
-    const productsState = useSelector((state) => state.Statecart);//pega os dados do array que contem os itens
+export function filterItens(itens){
 
     const [AddRepeated, setRepeated] = useState<string []> ([]);// array com os itens independente se esta repetido ou não
     const [filterRepeated, setItenRepeated]= useState<ItensCart []>([]);//array com os itens filtrados(sem repetições)
-    
-    return useMemo(()=>{
-        console.log(productsState)
-        const widthArr= productsState//pega o array que contem os itens
+    useEffect(()=>{
+        const widthArr= itens//pega o array que contem os itens
 
 
         const itensrepten= widthArr.map((elemnt)=>(//cria um array com os id's dos elementos
@@ -27,12 +23,12 @@ export function filterItens(){
         ))
         setRepeated(itensrepten)//guarda o array
 
-        const filterRepeatedItem= productsState.filter((element, i, s)=>(//seleciona somente um elemento
+        const filterRepeatedItem= itens.filter((element, i, s)=>(//seleciona somente um elemento
             i === s.findIndex((e) => e.filterElement.id === element.filterElement.id)
         )).map((element) => ({...element,...element.filterElement, Quant: 0}));
 
         setItenRepeated(filterRepeatedItem)
+    }, [itens])
 
-        return {AddRepeated , filterRepeated}
-    }, [])
+    return {AddRepeated , filterRepeated}
 }

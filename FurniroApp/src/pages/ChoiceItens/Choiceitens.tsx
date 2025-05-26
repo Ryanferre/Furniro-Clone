@@ -1,54 +1,21 @@
-
-import { useContext } from "react";
-
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { filterItens } from "../../Settings/separateItems/separateItems";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { FaTrash } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { FaTrash, FaFaceFrown } from "react-icons/fa6";
+import ProtectedLink from "../../Settings/RouterIconCart/ProtetedRoute";
 
-
-type FilterElement = {
-    id: number;
-    titleName: string;
-    priceDiscount: string;
-    imgItem: string;
-    Quant: number
-  };
-  
-  type ItensCart = {
-    filterElement: FilterElement;
-  };
-  
 
 const ChoiceItens = ()=>{
 
-    const [AddTocart, setAdd] = useState<number>(0);//adicionando itens
-    const [removeTotal, setRemove] = useState<number>(0);//quantidade de vezes que retiro
-    const [AddRepeated, setRepeated] = useState<string []> ([]);//array com o id de cada item(é aqui que selecino todos os itens independetemente se ele se repete ou não)
-    const [filterRepeated, setItenRepeated]= useState<ItensCart []>([]);//array com somente um item
-
-    const StateCart = useSelector((state) => state.Statecart);
-
-
-    useEffect(()=>{
-        const widthArr= products
-
-        const f= widthArr.map((elemnt)=>(//adiciona o total de item repetidos
-          elemnt.filterElement.id
-        ))
-        setRepeated(f)
+    const productsState= useSelector((state) => state.Statecart);//pega os dados do array que contem os itens
+    const {AddRepeated, filterRepeated}= filterItens(productsState);//acessa o Hookcostum de filtro e transfere o array
+    const [render, setrender]= useState(0)
   
-        const filterRepeatedItem= products.filter((element, i, s)=>(//seleciona somente um elemento
-          i === s.findIndex((e) => e.filterElement.id === element.filterElement.id)
-        )).map((element) => ({...element,...element.filterElement, Quant: 0}));
-  
-        setItenRepeated(filterRepeatedItem)
-      }, [products])
+    const dispatch = useDispatch();
 
-      //quantas vezes o elemento se repete
       useEffect(()=>{
-        const updatedProducts = [...products]; // Faz uma cópia
+        const updatedProducts = [...productsState]; // Faz uma cópia
   
         for (let i = 0; i < updatedProducts.length; i++) {
           // Conta quantas vezes o id aparece no array AddRepeated
@@ -57,42 +24,43 @@ const ChoiceItens = ()=>{
           // Atualiza a propriedade newProperty com a contagem
           updatedProducts[i].filterElement.Quant = count;
         }
+        setTimeout(()=>{
+          setrender(1)
+        }, 100)
         
-        console.log(AddRepeated)
-      }, [AddRepeated, filterRepeated])
-
-
-      useEffect(()=>{
-          const valuePrice= filterRepeated.map((element)=>(
-            element.filterElement.priceDiscount.split(' ')
-          ))
-
-          const removeIndex= valuePrice.map(arr => parseFloat(arr.slice(1)[0].replace(/\./g, '')))
-          //limpar o preço
-          const ReturnResul= removeIndex.reduce((accumulated, ValueTotal)=>  accumulated + ValueTotal, 0)
-
-          setRemove(ReturnResul)
       }, [filterRepeated])
 
-      //Incrementa o valor de Quant
-      const incrementQuant = (id: number) => {
-        setItenRepeated((prevState) =>
-          prevState.map((item) =>
-            item.filterElement.id === id ? {...item, filterElement: {...item.filterElement,Quant: item.filterElement.Quant + 1,}, }
-              : item
-          )
-        );
+      // Ação para deletar
+      const deleteItem= (id: number) => ({
+        type: "DELETE",
+        payload: id, // Passa o id do item para deletar
+      });
+
+      //limpesa para apresentar total no lado direito
+      const cleanPrice= (valor: string): number => {
+        const limpo= valor.replace(/[^\d]/g, '');
+        return Number(limpo);
       };
-    
-      // Decrementa o valor de Quant
-      const decrementQuant = (id: number) => {
-        setItenRepeated((prevState) =>
-          prevState.map((item) => item.filterElement.id === id && item.filterElement.Quant > 0 ? {...item, filterElement: {...item.filterElement, Quant: item.filterElement.Quant - 1, }, } : item));
-      };
+
+      //verificar se a quantidade e zero
+      const verifiQuant = (e)=>{
+        const NumberQuant= 1
+
+        console.log(e)
+        if(e == 0){
+          return NumberQuant
+        }else{
+          return e
+        }
+      }
+
+      const RemoveItem = (id: number) => {
+        dispatch(deleteItem(id)); // Dispara a ação DELETE com o id
+      }
 
     return(
         <>
-          <div className="w-full h-[310px] bg-contain flex flex-col items-center justify-center" style={{backgroundImage: `url(https://primertesteryan.s3.us-east-2.amazonaws.com/ShopBanner.png`}}>
+          <div className="w-full h-[310px] bg-contain flex flex-col items-center justify-center" style={{backgroundImage: 'url(https://i.postimg.cc/Vk5jnHQM/Shop-Banner.png'}}>
                 <h1 className="font-semibold text-[44px]">Shop</h1>
                 <div className="flex flex-row items-center justify-around w-[120px]">
                     <p className="font-semibold text-[16px]">Home</p>
@@ -115,40 +83,42 @@ const ChoiceItens = ()=>{
                           </li>
                           <li className="flex flex-row w-[170px] justify-between">
                               <p>Quantity</p>
-                              <p>Subtotal</p>
                           </li>
                       </ul>
-                      <ul className="flex flex-col overflow-auto h-[250px]">
-                          {filterRepeated.map((element)=>(
-                              <li className="flex flex-row items-center justify-between w-[690px] pr-10">
+                      <ul className="flex flex-col overflow-auto gap-4 h-[250px]">
+                          {filterRepeated.length == 0 ? 
+                          <div className="w-full h-full flex flex-col justify-center items-center">
+                            <p className="text-[#9F9F9F] text-2xl">carrinho vasio</p>
+                            <FaFaceFrown size={50} color="#9F9F9F" />
+                          </div> : filterRepeated.map((element)=>(
+                              <li className="flex flex-row items-center justify-between w-[44em] pr-10">
                                   <img className="w-[100px] rounded-[5px]" src={element.filterElement.imgItem} />
                                   <p>{element.filterElement.titleName}</p>
                                   <p>{element.filterElement.priceDiscount}</p>
-                                  <div className="w-[215px] h-[60px] justify-between items-center flex flex-row">
-                                      <div className="flex h-full flex-row justify-around items-center w-[110px] border rounded-[8px]">
-                                          <button onClick={() => decrementQuant(element.filterElement.id)}>-</button>
-                                          <p>{element.filterElement.Quant}</p>
-                                          <button onClick={() => incrementQuant(element.filterElement.id)}>+</button>
-                                      </div>
-                                      <p>Rs. {removeTotal}</p>
+                                  <div className="w-40 h-[60px] justify-between items-center flex flex-row">
+                                      <p>X {verifiQuant(element.filterElement.Quant)}</p>
                                 </div>
-                                <FaTrash color="#B88E2F" />
+                                <button onClick={() => RemoveItem(element.filterElement.id)}><FaTrash color="#B88E2F" /></button>
                               </li>
                           ))}
                       </ul>
                   </div>
-                  <div className="bg-[#F9F1E7] w-[380px] h-[380px]">
-                      <h2>Cart Totals</h2>
-                      <div>
-                          <p>Subtotal</p>
-                          <p>Rs {removeTotal}</p>
+                  <div className="bg-[#F9F1E7] w-[380px] h-[380px] flex flex-col pb-11 pt-4 justify-between items-center">
+                      <h2 className="font-semibold text-[35px]">Cart Totals</h2>
+                      <div className="h-20 w-72 flex flex-col justify-between">
+                         <div className="flex flex-row justify-between w-60">
+                           <p className="font-semibold text-[16px]">Subtotal</p>
+                           <p className="font-semibold text-[14px] text-[#9F9F9F]">Rs. {productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0)}</p>
+                         </div>
+                         <div className="flex flex-row justify-between w-60">
+                            <p className="font-semibold text-[16px]">Total</p>
+                             <p className="font-semibold text-[16px] text-[#B88E2F]">Rs. {productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0)}</p>
+                         </div>
                       </div>
-                      <div>
-                          <p>Total</p>
-                          <p>Rs. 250,000.00</p>
-                      </div>
+                      <ProtectedLink to="/Adress"><button className='border border-black rounded-2xl px-[60px] py-[15px]'>Checkout</button></ProtectedLink>
                   </div>
                 </div>
+                <p className="opacity-0">{render}</p>
             </section>
             
         </>

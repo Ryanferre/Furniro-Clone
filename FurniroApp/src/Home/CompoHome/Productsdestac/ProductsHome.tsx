@@ -49,7 +49,11 @@ const Destaque: React.FC = ()=>{
         <section className="w-[1236px] h-[1014px] m-auto flex flex-col items-center gap-7">
             <div className="flex flex-col items-center gap-6">
                 <h4 className="text-[40px] font-bold">Our Products</h4>
-                {itens.length === 0 ? <img className="w-20 m-auto" src={'https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_256.gif'}/> :
+                {itens.length === 0 ?
+                <div className="h-screen w-screen">
+                    <img className="w-10 m-auto" src={'https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_256.gif'}/>
+                </div>
+                :
                 <ul className="flex flex-row justify-center flex-wrap gap-6">
                     {itens.map((Element: itensJson)=>(
                         <li className="relative" key={Element.id} id={`${Element.id}`}>

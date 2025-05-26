@@ -7,6 +7,8 @@ import HomePage from './Home/Home.tsx'
 import Login from './pages/Login/Login.tsx'
 import ShopItens from './pages/Shop/shop.tsx'
 import ProductPage from './pages/productPage/product.tsx'
+import ProtectedRoute from './ProtetedRoute.tsx'
+import PageCep from './pages/Cep/pageCep.tsx'
 import ChoiceItens from './pages/ChoiceItens/Choiceitens.tsx'
 import { ClerkProvider } from '@clerk/clerk-react';
 
@@ -24,6 +26,14 @@ const rounter= createBrowserRouter([
     {
       path: '/login',
       element: <Login/>
+    },
+    {
+      path: '/Adress',
+      element: (
+        <ProtectedRoute data="/login">
+          <PageCep />
+        </ProtectedRoute>
+      )
     },
     {
       path: '/shop',

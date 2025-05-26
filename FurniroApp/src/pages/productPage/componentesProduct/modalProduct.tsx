@@ -4,25 +4,14 @@ import { FaTimes } from 'react-icons/fa';
 import ProtectedLink from '../../../Settings/RouterIconCart/ProtetedRoute';
 import { useContext } from 'react';
 import DataCostum from '../../../Settings/HookCostum/Costum';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { filterItens } from '../../../Settings/separateItems/separateItems';
 import { Link } from 'react-router-dom';
-
-type FilterElement = {
-  id: number;
-  titleName: string;
-  priceDiscount: string;
-  imgItem: string;
-  Quant: number
-};
-
-type ItensCart = {
-  filterElement: FilterElement;
-};
-
-
 
 const ModalTocart = () => {
   const productsState = useSelector((state) => state.Statecart);//pega os dados do array que contem os itens
+  const {AddRepeated, filterRepeated}= filterItens(productsState)
+
   const dispatch = useDispatch(); // Para disparar a ação de romover ou adicionar
 
   const {MoveModal, ModalViewCart}= useContext(DataCostum)
@@ -40,34 +29,10 @@ const ModalTocart = () => {
   const MoveBanner= (e)=>{
     const getId= (e.target as HTMLElement).id
 
-    console.log(getId)
-
     if(getId == '1'){
       MoveModal('hidden')
     }
   }
-    const [AddRepeated, setRepeated] = useState<string []> ([]);// array com os itens independente se esta repetido ou não
-    const [filterRepeated, setItenRepeated]= useState<ItensCart []>([]);//array com os itens filtrados(sem repetições)
-
-
-    //logica para selecionar somente um elemento e seleciona o id
-    useEffect(()=>{
-
-      console.log(productsState)
-      const widthArr= productsState//pega o array que contem os itens
-
-
-      const itensrepten= widthArr.map((elemnt)=>(//cria um array com os id's dos elementos
-        elemnt.filterElement.id//pega o id do elemento
-      ))
-      setRepeated(itensrepten)//guarda o array
-
-      const filterRepeatedItem= productsState.filter((element, i, s)=>(//seleciona somente um elemento
-        i === s.findIndex((e) => e.filterElement.id === element.filterElement.id)
-      )).map((element) => ({...element,...element.filterElement, Quant: 0}));
-
-      setItenRepeated(filterRepeatedItem)
-    }, [productsState])
 
 
 
@@ -82,7 +47,7 @@ const ModalTocart = () => {
         updatedProducts[i].filterElement.Quant = count;
       }
       
-    }, [AddRepeated])
+    })
   
   return (
     <section className={`absolute ${ModalViewCart} flex-row justify-end w-full h-[2540px] z-0 inset-0 bg-[#20202050]`} id="1" onClick={MoveBanner}>
@@ -124,7 +89,7 @@ const ModalTocart = () => {
         <span className='w-full h-[1px] bg-[#9F9F9F]'></span>
         <ul className='flex flex-row w-[320px] ml-[20px] justify-between'>
           <li>
-            <button className='border border-black rounded-[50px] px-[30px] py-[5px]'><Link to="/Cart">Cart</Link></button>
+            <button className='border border-black rounded-[50px] px-[30px] py-[5px]'><Link to="/ChoiceItens">Cart</Link></button>
           </li>
           <li>
             <ProtectedLink to="/Adress"><button className='border border-black rounded-[50px] px-[20px] py-[5px]'>Checkout</button></ProtectedLink>
