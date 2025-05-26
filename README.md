@@ -17,7 +17,7 @@ Este projeto é uma aplicação web de e-commerce desenvolvida com foco em perfo
 ---
 
 ## 🧱 Estrutura de Pastas
-$ tree
+---
 src/
 ├── Home/
 │   ├── Home.tsx
