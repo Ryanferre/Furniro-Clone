@@ -20,53 +20,54 @@ Este projeto é uma aplicação web de e-commerce desenvolvida com foco em perfo
 
 src/
 ├── Home/
-│ ├── Home.tsx
-│ └── CompoHome/
-│ ├── BrowserRanger/
-│ ├── Productsdestac/
-│ ├── SectionBanner/
-│ ├── carrosel/
-│ └── gridItens/
+│   ├── Home.tsx
+│   └── CompoHome/
+│       ├── BrowserRanger/
+│       ├── Productsdestac/
+│       ├── SectionBanner/
+│       ├── carrosel/
+│       └── gridItens/
 │
 ├── FooterAndHeader/
-│ ├── Footer/
-│ │ ├── footer.tsx
-│ │ └── CompoFooter/
-│ └── Header/
-│ ├── Header.tsx
-│ └── CompoHeader/
+│   ├── Footer/
+│   │   ├── footer.tsx
+│   │   └── CompoFooter/
+│   └── Header/
+│       ├── Header.tsx
+│       └── CompoHeader/
 │
-├── Settings/ (Lógica principal da aplicação)
-│ ├── HookCostum/
-│ │ └── Costum.tsx
-│ ├── RouterIconCart/
-│ │ └── ProtetedRoute.tsx
-│ ├── redux/
-│ │ └── add.tsx
-│ └── separateItems/
-│ └── separateItems.tsx
+├── Settings/
+│   ├── HookCostum/
+│   │   └── Costum.tsx
+│   ├── RouterIconCart/
+│   │   └── ProtetedRoute.tsx
+│   ├── redux/
+│   │   └── add.tsx
+│   └── separateItems/
+│       └── separateItems.tsx
 │
 ├── pages/
-│ ├── Cep/
-│ │ └── pageCep.tsx
-│ ├── ChoiceItens/
-│ │ └── Choiceitens.tsx
-│ ├── Login/
-│ │ └── Login.tsx
-│ ├── Shop/
-│ │ ├── shop.tsx
-│ │ ├── imgIcon/
-│ │ └── CompoShop/
-│ │ ├── ModalFilter/
-│ │ │ └── ModalFilter.ts
-│ │ └── itensList/
-│ │ └── ShopItens.tsx
-│ └── productPage/
-│ ├── productPage.tsx
-│ └── componentesProduct/
-│ ├── abolt.tsx
-│ ├── listItensProduct.tsx
-│ └── modalProduct.tsx
+│   ├── Cep/
+│   │   └── pageCep.tsx
+│   ├── ChoiceItens/
+│   │   └── Choiceitens.tsx
+│   ├── Login/
+│   │   └── Login.tsx
+│   ├── Shop/
+│   │   ├── shop.tsx
+│   │   ├── imgIcon/
+│   │   └── CompoShop/
+│   │       ├── ModalFilter/
+│   │       │   └── ModalFilter.ts
+│   │       └── itensList/
+│   │           └── ShopItens.tsx
+│   └── productPage/
+│       ├── productPage.tsx
+│       └── componentesProduct/
+│           ├── abolt.tsx
+│           ├── listItensProduct.tsx
+│           └── modalProduct.tsx
+
 
 
 ---
