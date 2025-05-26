@@ -7,6 +7,7 @@ interface CartItem {
     titleName: string;
     priceDiscount: string;
     imgItem: string;
+    Quant: number
   };
 }
 
@@ -40,5 +41,6 @@ const reducer = (state: CartState = Init, action: any): CartState => {
 
 // Criar o store
 const Storecart = createStore(reducer);
+export type RootState = ReturnType<typeof Storecart.getState>
 
 export default Storecart;

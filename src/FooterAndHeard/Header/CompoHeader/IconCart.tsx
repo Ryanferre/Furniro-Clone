@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { FaCartShopping } from "react-icons/fa6"
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from 'react-router-dom';
 import DataCostum from "../../../Settings/HookCostum/Costum";
-
+import type { RootState } from "../../../Settings/redux/add";
 
 const AddedItencart= ()=>{
-    const StoreItens= useSelector((state)=> state.Statecart.length)
-    const Stott= useSelector((state)=> state.Statecart)
+    const StoreItens= useSelector((state: RootState)=> state.Statecart.length)
+    const Stott= useSelector((state: RootState)=> state.Statecart)
 
     console.log(Stott)
 

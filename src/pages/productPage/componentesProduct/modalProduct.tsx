@@ -7,9 +7,10 @@ import DataCostum from '../../../Settings/HookCostum/Costum';
 import { useEffect } from 'react';
 import { filterItens } from '../../../Settings/separateItems/separateItems';
 import { Link } from 'react-router-dom';
+import type { RootState } from '../../../Settings/redux/add';
 
 const ModalTocart = () => {
-  const productsState = useSelector((state) => state.Statecart);//pega os dados do array que contem os itens
+  const productsState = useSelector((state: RootState) => state.Statecart);//pega os dados do array que contem os itens
   const {AddRepeated, filterRepeated}= filterItens(productsState)
 
   const dispatch = useDispatch(); // Para disparar a ação de romover ou adicionar
@@ -17,16 +18,16 @@ const ModalTocart = () => {
   const {MoveModal, ModalViewCart}= useContext(DataCostum)
 
   // Ação para deletar
-  const deleteItem = (id) => ({
+  const deleteItem = (id: number) => ({
     type: "DELETE",
     payload: id, // Passa o id do item para deletar
   });
 
-  const RemoveItem = (id) => {
+  const RemoveItem = (id: number) => {
     dispatch(deleteItem(id)); // Dispara a ação DELETE com o id
   }
 
-  const MoveBanner= (e)=>{
+  const MoveBanner= (e: any)=>{
     const getId= (e.target as HTMLElement).id
 
     if(getId == '1'){

@@ -1,6 +1,5 @@
 import { useState } from "react"
 import ListItens from "./CompoShop/itensList/ShopItens"
-import FilterBox from "./CompoShop/ModalFilter/ModalFilter"
 
 const ShopItens= ()=>{
     const [moveList, setMove]= useState(300)

@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css'
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 //imagens do carrosel
@@ -22,7 +21,7 @@ const Carrosel = () => {
       { id: 3, imgSrc: Slide3 },
    ];
 
-  const getImgCurret = (swiper) => {
+  const getImgCurret = (swiper: any) => {
     const currentImg = ArrSlide[swiper.realIndex];
     if (currentImg && currentImg.imgSrc) {
       setImg(currentImg.imgSrc);

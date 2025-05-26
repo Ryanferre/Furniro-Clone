@@ -2,7 +2,7 @@ import { useState } from "react"
 const Cadestre= ()=>{
     const [ValidEmail, SetEmail]= useState(0)
 
-    const GetValue= (e)=>{
+    const GetValue= (e: string)=>{
         const Email= /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         if(Email.test(e)){
             SetEmail(0)

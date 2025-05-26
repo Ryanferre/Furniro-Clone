@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FaTrash, FaFaceFrown } from "react-icons/fa6";
 import ProtectedLink from "../../Settings/RouterIconCart/ProtetedRoute";
+import type { RootState } from "../../Settings/redux/add";
 
 
 const ChoiceItens = ()=>{
 
-    const productsState= useSelector((state) => state.Statecart);//pega os dados do array que contem os itens
+    const productsState= useSelector((state: RootState) => state.Statecart);//pega os dados do array que contem os itens
     const {AddRepeated, filterRepeated}= filterItens(productsState);//acessa o Hookcostum de filtro e transfere o array
     const [render, setrender]= useState(0)
   
@@ -43,7 +44,7 @@ const ChoiceItens = ()=>{
       };
 
       //verificar se a quantidade e zero
-      const verifiQuant = (e)=>{
+      const verifiQuant = (e: number)=>{
         const NumberQuant= 1
 
         console.log(e)

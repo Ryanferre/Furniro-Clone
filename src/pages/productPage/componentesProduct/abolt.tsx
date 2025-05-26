@@ -1,6 +1,9 @@
+interface Imgs {
+  Img1: string;
+  Img2: string
+}
 
-
-const Aboult= ({Img1, Img2})=>{
+const Aboult= ({Img1, Img2}: Imgs)=>{
     const styleImgs= 'w-[530px] h-[300px] rounded-[5px]'
     return(
         <section className="px-20 pt-9 pb-16 flex flex-col items-center gap-7 border border-[#D9D9D9]">

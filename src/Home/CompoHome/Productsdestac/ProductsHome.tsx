@@ -25,7 +25,7 @@ const Destaque: React.FC = ()=>{
     const [itens, setItens] =useState <itensJson []>([])
     const dispatch = useDispatch();
 
-    const AddItem = (e) => {//aqui estou adicionando
+    const AddItem = (e: any) => {//aqui estou adicionando
         const divElement = e.currentTarget.closest('li')//pego a li
         const idDiv = parseInt(divElement.id)//pega o id do li, que esta do tipo string, transforma em numero inteiro e armazena em uma variavel
 

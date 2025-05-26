@@ -32,7 +32,7 @@ const PageCep = ()=>{
 
     const cepRequerid= /^[0-9]{8}$/
 
-    const validCep= (e)=>{
+    const validCep= (e: any)=>{
         const cepDigit= e.target.value
         if(cepRequerid.test(cepDigit)){
             setCep(e.target.value)

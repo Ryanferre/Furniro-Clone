@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ const ListItens = () => {
     const dispatch = useDispatch();
 
 
-    const AddItem = (e) => {//aqui estou adicionando
+    const AddItem = (e: any) => {//aqui estou adicionando
         const findElement = e.currentTarget.closest('li')
         const idElement = parseInt(findElement.id)//pega o id do li, que esta com tipo string, transforma em numero inteiro e armazena em uma variavel
 

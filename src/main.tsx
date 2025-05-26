@@ -30,7 +30,7 @@ const rounter= createBrowserRouter([
     {
       path: '/Adress',
       element: (
-        <ProtectedRoute data="/login">
+        <ProtectedRoute redirectTo="/login">
           <PageCep />
         </ProtectedRoute>
       )
@@ -53,7 +53,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-    <ClerkProvider frontendApi={clerkFrontendApi} publishableKey={publishableKey}>
+    <ClerkProvider clerkJSUrl={clerkFrontendApi} publishableKey={publishableKey}>
       <RouterProvider router={rounter} />
     </ClerkProvider>
 );

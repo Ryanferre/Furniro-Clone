@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import  axios  from "axios"
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ const ListProctRelated= ()=>{
 
 
     //adicionar iten
-    const AddItem = (e) => {
+    const AddItem = (e: any) => {
 
         const findElement= e.currentTarget.closest('li')
         const idElement= findElement.id
