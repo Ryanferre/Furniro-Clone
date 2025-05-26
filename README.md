@@ -1,54 +1,98 @@
-# React + TypeScript + Vite
+# 🛍️ Projeto E-commerce com React + Tailwind + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação web de e-commerce desenvolvida com foco em performance, modularização e boas práticas. O front-end é construído com **React**, **TypeScript** e **Tailwind CSS**, integrando **APIs externas**, **autenticação com Clerk** e gerenciamento de estado com **Redux**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+- **React** – Biblioteca para construção de interfaces;
+- **TypeScript** – Superset do JavaScript para tipagem estática;
+- **Tailwind CSS** – Framework de utilitários CSS para estilização rápida e responsiva;
+- **Redux** – Gerenciamento global de estado;
+- **Clerk** – Autenticação moderna de usuários;
+- **APIs externas (Node.js)** – Integrações com serviços externos;
+- **API de CEP** – Consumo de dados de endereço via CEP.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🧱 Estrutura de Pastas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+src/
+├── Home/
+│ ├── Home.tsx
+│ └── CompoHome/
+│ ├── BrowserRanger/
+│ ├── Productsdestac/
+│ ├── SectionBanner/
+│ ├── carrosel/
+│ └── gridItens/
+│
+├── FooterAndHeader/
+│ ├── Footer/
+│ │ ├── footer.tsx
+│ │ └── CompoFooter/
+│ └── Header/
+│ ├── Header.tsx
+│ └── CompoHeader/
+│
+├── Settings/ (Lógica principal da aplicação)
+│ ├── HookCostum/
+│ │ └── Costum.tsx
+│ ├── RouterIconCart/
+│ │ └── ProtetedRoute.tsx
+│ ├── redux/
+│ │ └── add.tsx
+│ └── separateItems/
+│ └── separateItems.tsx
+│
+├── pages/
+│ ├── Cep/
+│ │ └── pageCep.tsx
+│ ├── ChoiceItens/
+│ │ └── Choiceitens.tsx
+│ ├── Login/
+│ │ └── Login.tsx
+│ ├── Shop/
+│ │ ├── shop.tsx
+│ │ ├── imgIcon/
+│ │ └── CompoShop/
+│ │ ├── ModalFilter/
+│ │ │ └── ModalFilter.ts
+│ │ └── itensList/
+│ │ └── ShopItens.tsx
+│ └── productPage/
+│ ├── productPage.tsx
+│ └── componentesProduct/
+│ ├── abolt.tsx
+│ ├── listItensProduct.tsx
+│ └── modalProduct.tsx
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🔐 Autenticação
+
+O sistema de login e autenticação é gerenciado com **Clerk**, garantindo segurança e facilidade na criação de contas e login de usuários.
+
+---
+
+## 🌍 APIs Externas
+
+A aplicação consome:
+- Uma **API Node.js** personalizada para produtos;
+- Uma **API de CEP** para preenchimento automático de endereço.
+
+---
+
+## 🧠 Lógica da Aplicação
+
+Toda a lógica está centralizada na pasta `Settings`, que inclui:
+- Hooks customizados (`HookCostum`)
+- Rotas protegidas (`RouterIconCart`)
+- Gerenciamento de estado via Redux (`redux`)
+- Separação e filtragem de itens (`separateItems`)
+
+---
+
+## 🛠️ Em desenvolvimento
