@@ -16,10 +16,9 @@ const StyleIconsHover = "flex flex-row items-center gap-[2px]"
 const IconDescription = "text-white font-semibold text-[16px]"
 
 
-const ListItens = () => {
+const ListItens = ({page, quantIten}: {page: number | null; quantIten: number | null}) => {
     const [itens, setItens] = useState<itensJson[]>([])
     const dispatch = useDispatch();
-
 
     const AddItem = (e: any) => {//aqui estou adicionando
         const findElement = e.currentTarget.closest('li')
@@ -30,15 +29,24 @@ const ListItens = () => {
         dispatch({ type: "INCREMENT", payload: { filterElement } });
     };
 
+    //vai ser acionando na entrada da pagina carregando os produtos da API
     useEffect(() => {
 
-        axios.get("https://back-end-ecommerce-d-final.onrender.com/products").then((response) => {
+        axios.get("https://back-end-ecommerce-d-final.onrender.com/products?_page=1&_limit=16").then((response) => {
             setItens(response.data)//guarda os itens da resposta no array de objetos chamado "itens"
         }).catch((err) => {
             console.log(err)
         })
-    }, [])//vai ser acionando na entrada da pagina carregando os produtos da API
+    }, [])
 
+    //paginacao
+    useEffect(()=>{
+        axios.get(`https://back-end-ecommerce-d-final.onrender.com/products?_page=${page}&_limit=${quantIten}`).then((response) => {
+            setItens(response.data)//guarda os itens da resposta no array de objetos chamado "itens"
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [page, quantIten])
 
     return (
         <section className="px-[80px] pt-[70px]">

@@ -3,6 +3,8 @@ import ListItens from "./CompoShop/itensList/ShopItens"
 
 const ShopItens= ()=>{
     const [moveList, setMove]= useState(300)
+    const [page, setPage]= useState <number | null>(null)//numero da pagina
+    const [quantIten, setQuant]= useState <number | null>(null)//quantidade de itens por pagnina
 
     const checkedMove= ()=>{
         if (moveList === 0) {
@@ -10,6 +12,11 @@ const ShopItens= ()=>{
         } else if (moveList === 300) {
             setMove(0);
         }
+    }
+    //funcao de paginacao
+    const pageDataInfo= (Numberpage: number, QuantItens: number)=>{
+        setPage(Numberpage)
+        setQuant(QuantItens)
     }
     return(
         <>
@@ -55,7 +62,11 @@ const ShopItens= ()=>{
                     </label>
                 </div>
             </section>
-            <ListItens />
+            <ListItens page={page} quantIten={quantIten} />
+            <div className="mx-auto w-max flex flex-row gap-2 my-4">
+                <button className="bg-[#B88E2F] text-white px-[.6rem] py-[.3rem] rounded-[.2rem] cursor-pointer" onClick={()=> pageDataInfo(1, 16)}>1</button>
+                <button className="bg-[#B88E2F] text-white px-[.6rem] py-[.3rem] rounded-[.2rem] cursor-pointer" onClick={()=> pageDataInfo(2, 16)}>2</button>
+            </div>
          </section>
          
         </>

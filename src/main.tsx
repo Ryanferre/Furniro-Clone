@@ -53,7 +53,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-    <ClerkProvider clerkJSUrl={clerkFrontendApi} publishableKey={publishableKey}>
+    <ClerkProvider publishableKey={publishableKey}>
       <RouterProvider router={rounter} />
     </ClerkProvider>
 );
