@@ -3,8 +3,8 @@ import ListItens from "./CompoShop/itensList/ShopItens"
 
 const ShopItens= ()=>{
     const [moveList, setMove]= useState(300)
-    const [page, setPage]= useState <number | null>(null)//numero da pagina
-    const [quantIten, setQuant]= useState <number | null>(null)//quantidade de itens por pagnina
+    const [page, setPage]= useState <number | null>(1)//numero da pagina
+    const [quantIten, setQuant]= useState <number | null>(16)//quantidade de itens por pagnina
 
     const checkedMove= ()=>{
         if (moveList === 0) {
