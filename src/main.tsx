@@ -13,7 +13,6 @@ import ChoiceItens from './pages/ChoiceItens/Choiceitens.tsx'
 import { ClerkProvider } from '@clerk/clerk-react';
 
 
-const clerkFrontendApi = "https://enjoyed-husky-33.clerk.accounts.dev";
 const publishableKey = "pk_test_ZW5qb3llZC1odXNreS0zMy5jbGVyay5hY2NvdW50cy5kZXYk"
 const rounter= createBrowserRouter([
   {
