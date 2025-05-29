@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useRef } from "react";
-import SwiperCore from 'swiper';
+import { Swiper as SwiperType } from 'swiper';
+import { useRef } from "react";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import 'swiper/css'
+import '../../../../node_modules/swiper/swiper.css'
 //imagens do carrosel
 import Slide1 from "./Imgcarrosel/Mask.png"
 import Slide2 from "./Imgcarrosel/Rectangle24.png"
@@ -12,7 +12,7 @@ import Slide3 from "./Imgcarrosel/Rectangle25.png"
 
 const Carrosel = () => {
   const [ImgCurrent, setImg] = useState<string>('');
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperType | null>(null);
   const [checkedIten1, setIten1]= useState(false)
   const [checkedIten2, setIten2]= useState(false)
   const [checkedIten3, setIten3]= useState(false)
@@ -116,7 +116,7 @@ const Carrosel = () => {
 
     const handleNext = () => {
     if (swiperRef.current) {
-      swiperRef.current.slideNext();
+      swiperRef.current?.slideNext();
     }
   };
 
