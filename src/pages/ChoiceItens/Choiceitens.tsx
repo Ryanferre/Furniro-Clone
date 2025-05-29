@@ -2,18 +2,31 @@ import { filterItens } from "../../Settings/separateItems/separateItems";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { FaTrash, FaFaceFrown } from "react-icons/fa6";
+import { FaTrash, FaFaceFrown, FaCartShopping } from "react-icons/fa6";
 import ProtectedLink from "../../Settings/RouterIconCart/ProtetedRoute";
 import type { RootState } from "../../Settings/redux/add";
+import axios from "axios"
 
-
+type CepData= {
+    cep: string,
+    regiao: string,
+    logradouro: string,
+    localidade: string,
+    estado: string,
+    uf: string
+}
 const ChoiceItens = ()=>{
 
     const productsState= useSelector((state: RootState) => state.Statecart);//pega os dados do array que contem os itens
     const {AddRepeated, filterRepeated}= filterItens(productsState);//acessa o Hookcostum de filtro e transfere o array
     const [render, setrender]= useState(0)
+    const [ResApi, SetRes]= useState<CepData>({ cep: "", regiao: "", logradouro: "", localidade: "", estado: "", uf: ""})
+    const [Cep, setCep]= useState("")
+    const [PriceCep, setPrice]= useState('R$ 0,00')
+    const [inforWithoutCart, setInfor]= useState('0')
+    const [totalPrice, setTotalPrice]= useState(0)//Apresenta o valor total. Se o usuario adicionar um cep, esse valor e modificado
   
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();//faz a ligacao e aciona o DELETE no redux
 
       useEffect(()=>{
         const updatedProducts = [...productsState]; // Faz uma cópia
@@ -37,6 +50,10 @@ const ChoiceItens = ()=>{
         payload: id, // Passa o id do item para deletar
       });
 
+      const RemoveItem = (id: number) => {
+        dispatch(deleteItem(id)); //chama a funcao "deleteItem" passando o id para disparar a ação de DELETE
+      }
+
       //limpesa para apresentar total no lado direito
       const cleanPrice= (valor: string): number => {
         const limpo= valor.replace(/[^\d]/g, '');
@@ -46,8 +63,7 @@ const ChoiceItens = ()=>{
       //verificar se a quantidade e zero
       const verifiQuant = (e: number)=>{
         const NumberQuant= 1
-
-        console.log(e)
+        
         if(e == 0){
           return NumberQuant
         }else{
@@ -55,10 +71,65 @@ const ChoiceItens = ()=>{
         }
       }
 
-      const RemoveItem = (id: number) => {
-        dispatch(deleteItem(id)); // Dispara a ação DELETE com o id
+      //verificacao de caracter do input para cep
+      const cepRequerid= /^[0-9]{8}$/
+      const validCep= (e: any)=>{
+        const cepDigit= e.target.value
+        if(productsState.length > 0){
+          if(cepRequerid.test(cepDigit)){
+            setCep(e.target.value)
+          }else{
+          }
+        }else{
+          setInfor('1')
+        }
+    }
+
+    //se estiver tudo ok com o cep, verifique e puxe informacoes do viacep
+    useEffect(()=>{
+        const getCep= async ()=>{
+            await axios.get(`https://viacep.com.br/ws/${Cep}/json/`).then(
+                (e)=>{
+                    SetRes(e.data)
+                    console.log(e.data)
+                }
+            ).catch((err)=>{
+                console.log(err)
+            })
+        }
+        getCep()
+    }, [Cep])
+
+    //recebeu as informacoes de cep, envie para verificacao de frete no back-end
+    useEffect(()=>{
+      const sendData= async ()=>{
+        await axios.post('http://localhost:3000/checkout?',{
+          location: ResApi.localidade,
+          state: ResApi.estado,
+          cep: ResApi.cep
+        }).then(
+          (e)=>{
+            setPrice(e.data)
+          }
+        ).catch((error)=>{
+          console.log(error)
+        })
       }
 
+      sendData()
+    }, [ResApi])
+
+    //faz o calculo total dos itens no carregamento do componente e quando o DELETE for execultado
+    useEffect(()=>{
+      setTotalPrice(productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0))
+      if(productsState.length == 0){
+        setPrice('R$ 0,00')
+      }
+    }, [productsState])
+    //se o usuario digitou o cep e quer saber o valor total com o frete incluso
+    useEffect(()=>{
+      setTotalPrice((e)=> e + parseInt(PriceCep.replace("R$", '')))//soma o valor total com o frete
+    }, [PriceCep])
     return(
         <>
           <div className="w-full h-[310px] bg-contain flex flex-col items-center justify-center" style={{backgroundImage: 'url(https://i.postimg.cc/Vk5jnHQM/Shop-Banner.png'}}>
@@ -109,12 +180,23 @@ const ChoiceItens = ()=>{
                       <div className="h-20 w-72 flex flex-col justify-between">
                          <div className="flex flex-row justify-between w-60">
                            <p className="font-semibold text-[16px]">Subtotal</p>
-                           <p className="font-semibold text-[14px] text-[#9F9F9F]">Rs. {productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0)}</p>
+                           <p className="font-semibold text-[14px] text-[#9F9F9F]">{productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+                         </div>
+                         <div className="flex flex-row justify-between w-60">
+                            <p className="font-semibold text-[16px]">Frente</p>
+                             <p className="font-semibold text-[16px] text-[#B88E2F]">{PriceCep}</p>
                          </div>
                          <div className="flex flex-row justify-between w-60">
                             <p className="font-semibold text-[16px]">Total</p>
-                             <p className="font-semibold text-[16px] text-[#B88E2F]">Rs. {productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0)}</p>
+                             <p className="font-semibold text-[16px] text-[#B88E2F]">{totalPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
                          </div>
+                      </div>
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="flex flex-row w-72 justify-between items-center pr-10">
+                          <FaCartShopping color="black" />
+                          <input className="w-32 outline-none border-b border-black py-[.1rem] indent-1" type="text" placeholder="your cep" onChange={validCep}/>
+                        </div>
+                        <p className={`opacity-${inforWithoutCart} font-semibold text-[14px] text-[#9F9F9F]`}>Adicione algo ao carrinho</p>
                       </div>
                       <ProtectedLink to="/Adress"><button className='border border-black rounded-2xl px-[60px] py-[15px]'>Checkout</button></ProtectedLink>
                   </div>

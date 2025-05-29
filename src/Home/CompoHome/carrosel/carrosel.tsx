@@ -1,6 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useRef } from "react";
+import SwiperCore from 'swiper';
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import 'swiper/css'
 //imagens do carrosel
 import Slide1 from "./Imgcarrosel/Mask.png"
 import Slide2 from "./Imgcarrosel/Rectangle24.png"
@@ -9,6 +12,7 @@ import Slide3 from "./Imgcarrosel/Rectangle25.png"
 
 const Carrosel = () => {
   const [ImgCurrent, setImg] = useState<string>('');
+  const swiperRef = useRef(null);
   const [checkedIten1, setIten1]= useState(false)
   const [checkedIten2, setIten2]= useState(false)
   const [checkedIten3, setIten3]= useState(false)
@@ -110,6 +114,11 @@ const Carrosel = () => {
         }
     }
 
+    const handleNext = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
 
   return (
     <section className="flex h-[670px] flex-row items-center justify-between pl-20 bg-[#FCF8F3]">
@@ -136,13 +145,13 @@ const Carrosel = () => {
                 <p className="text-[30px]">inner Peace</p>
               </div>
             </div>
-            <button className="bg-[#B88E2F] p-4"><FaArrowRight color="white" /></button>
+            <button className="bg-[#B88E2F] p-4"><FaArrowRight color="white" onClick={handleNext}/></button>
           </div>
         </div>
 
         {/* Swiper */}
         <div className=" flex flex-col w-full justify-between items-end pb-6">
-          <Swiper className="h-[450px] w-[840px]" spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
+          <Swiper className="h-[450px] w-[840px]"  onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
             {ArrSlide.map((Element) => (
               <SwiperSlide key={Element.id} >
                 <img className="w-[360px] h-full" src={Element.imgSrc} alt={`Slide ${Element.id}`} />
