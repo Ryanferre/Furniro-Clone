@@ -103,7 +103,7 @@ const ChoiceItens = ()=>{
     //recebeu as informacoes de cep, envie para verificacao de frete no back-end
     useEffect(()=>{
       const sendData= async ()=>{
-        await axios.post('http://localhost:3000/checkout?',{
+        await axios.post('https://api-frete-furniro.onrender.com/checkout?',{
           location: ResApi.localidade,
           state: ResApi.estado,
           cep: ResApi.cep
