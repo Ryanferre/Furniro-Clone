@@ -7,3 +7,5 @@ const Assistent= ()=>{
         </section>
     )
 }
+
+export default Assistent

@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import AddedItencart from "./CompoHeader/IconCart.tsx";
 import DataCostum from "../../Settings/HookCostum/Costum.tsx";
 import MenuMobile from "./CompoHeader/MenuMobile.tsx";
+import Assistent from "../../Home/CompoHome/Assistente/Assistente.tsx";
 
 /*icones */
 import { FaUser } from "react-icons/fa"
@@ -52,6 +53,7 @@ const Header= ()=>{
             </SignedOut>
             <AddedItencart />
             </div>
+            <Assistent />
          </header>
         </>
     )
