@@ -51,8 +51,8 @@ const ModalTocart = () => {
     })
   
   return (
-    <section className={`absolute ${ModalViewCart} flex-row justify-end w-full h-[2540px] z-0 inset-0 bg-[#20202050]`} id="1" onClick={MoveBanner}>
-      <div className='bg-white h-[700px] w-[370px] pt-[30px] flex flex-col z-1 justify-between' id="2">
+    <section className={`absolute ${ModalViewCart} flex-row justify-end w-full h-[2540px] z-40 inset-0 bg-[#20202050]`} id="1" onClick={MoveBanner}>
+      <div className='bg-white h-[700px] w-[370px] py-7 flex flex-col z-1 justify-between' id="2">
         <div className='flex flex-col w-[300px] pl-[30px]'>
           <div className='flex flex-row items-center justify-between'>
             <h1 className='font-semibold text-[24px]'>Shopping Cart</h1>
@@ -93,7 +93,7 @@ const ModalTocart = () => {
             <button className='border border-black rounded-[50px] px-[30px] py-[5px]'><Link to="/ChoiceItens">Cart</Link></button>
           </li>
           <li>
-            <ProtectedLink to="/Adress"><button className='border border-black rounded-[50px] px-[20px] py-[5px]'>Checkout</button></ProtectedLink>
+            <ProtectedLink to="/Adress"><button className='border cursor-pointer border-black rounded-[50px] px-[20px] py-[5px]'>Checkout</button></ProtectedLink>
           </li>
           <li>
             <button className='border border-black rounded-[50px] px-[7px] py-[5px]'>Comparison</button>

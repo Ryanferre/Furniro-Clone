@@ -21,7 +21,6 @@ const Header= ()=>{
     }
 
     return(
-        <>
          <header className="flex relative flex-row items-center justify-between px-4 lg:px-10 h-[5em]">
 
             {/*logo*/}
@@ -55,7 +54,6 @@ const Header= ()=>{
             </div>
             <Assistent />
          </header>
-        </>
     )
 }
 

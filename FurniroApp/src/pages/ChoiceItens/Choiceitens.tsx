@@ -103,21 +103,21 @@ const ChoiceItens = ()=>{
     //recebeu as informacoes de cep, envie para verificacao de frete no back-end
     useEffect(()=>{
       const sendData= async ()=>{
-        await axios.post('https://api-frete-furniro.onrender.com/checkout?',{
+           await axios.post('https://api-frete-furniro.onrender.com/checkout?',{
           location: ResApi.localidade,
           state: ResApi.estado,
           cep: ResApi.cep
-        }).then(
-          (e)=>{
-            setPrice(e.data)
-          }
-        ).catch((error)=>{
-          console.log(error)
-        })
+          }).then(
+            (e)=>{
+              setPrice(e.data)
+            }
+          ).catch((error)=>{
+            console.log(error)
+          })
       }
 
       sendData()
-    }, [ResApi])
+    }, [ResApi.cep])
 
     //faz o calculo total dos itens no carregamento do componente e quando o DELETE for execultado
     useEffect(()=>{
@@ -183,7 +183,7 @@ const ChoiceItens = ()=>{
                            <p className="font-semibold text-[14px] text-[#9F9F9F]">{productsState.reduce((sum, item)=> sum + cleanPrice(item.filterElement.priceDiscount), 0).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
                          </div>
                          <div className="flex flex-row justify-between w-60">
-                            <p className="font-semibold text-[16px]">Frente</p>
+                            <p className="font-semibold text-[16px]">Frete</p>
                              <p className="font-semibold text-[16px] text-[#B88E2F]">{PriceCep}</p>
                          </div>
                          <div className="flex flex-row justify-between w-60">
