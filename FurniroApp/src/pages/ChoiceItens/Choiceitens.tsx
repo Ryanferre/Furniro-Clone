@@ -115,7 +115,6 @@ const ChoiceItens = ()=>{
             console.log(error)
           })
       }
-
       sendData()
     }, [ResApi.cep])
 
@@ -169,7 +168,7 @@ const ChoiceItens = ()=>{
                                   <p>{element.filterElement.priceDiscount}</p>
                                   <div className="w-40 h-[60px] justify-between items-center flex flex-row">
                                       <p>X {verifiQuant(element.filterElement.Quant)}</p>
-                                </div>
+                                  </div>
                                 <button onClick={() => RemoveItem(element.filterElement.id)}><FaTrash color="#B88E2F" /></button>
                               </li>
                           ))}

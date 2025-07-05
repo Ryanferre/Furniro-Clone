@@ -121,7 +121,7 @@ const Carrosel = () => {
   };
 
   return (
-    <section className="flex h-[670px] flex-col lg:flex-row items-center justify-around lg:justify-between pl-10 lg:pl-20 bg-[#FCF8F3]">
+    <section className="flex h-[670px] w-full flex-col lg:flex-row items-center justify-around lg:justify-between pl-10 lg:pl-20 bg-[#FCF8F3]">
       <article className="w-[400px] h-max gap-2 lg:gap-0 lg:h-65 flex flex-col justify-between">
         <div className="w-full h-40 lg:h-[160px] flex flex-col justify-between">
           <h5 className="font-bold text-[1.3em] lg:text-[40px] leading-[47px]">50+ Beautiful rooms <p>inspiration</p></h5>
@@ -151,7 +151,7 @@ const Carrosel = () => {
 
         {/* Swiper */}
         <div className=" flex invisible lg:visible flex-col w-full gap-4 justify-between items-end pb-6">
-          <Swiper className="h-[450px] w-[840px]"  onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
+          <Swiper className="h-[450px] w-2 lg:w-[840px]"  onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
             {ArrSlide.map((Element) => (
               <SwiperSlide key={Element.id} >
                 <img className="w-[360px] h-full" src={Element.imgSrc} alt={`Slide ${Element.id}`} />
