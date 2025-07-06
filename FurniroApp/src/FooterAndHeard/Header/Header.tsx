@@ -38,7 +38,7 @@ const Header= ()=>{
             </ul>
             <MenuMobile />
             {/*Botao para o menu */}
-            <button className="z-30 flex lg:hidden" onClick={ModalMenuVisibleOurNone}>
+            <button className="z-30 ml-35 flex lg:hidden" onClick={ModalMenuVisibleOurNone}>
                 <img className="w-8" src="https://i.postimg.cc/25nWkh0S/menu-aberto.png"/>
             </button>
 

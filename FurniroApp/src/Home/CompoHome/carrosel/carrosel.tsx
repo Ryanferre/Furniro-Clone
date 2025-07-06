@@ -122,7 +122,7 @@ const Carrosel = () => {
 
   return (
     <section className="flex h-[670px] w-full flex-col lg:flex-row items-center justify-around lg:justify-between pl-10 lg:pl-20 bg-[#FCF8F3]">
-      <article className="w-[400px] h-max gap-2 lg:gap-0 lg:h-65 flex flex-col justify-between">
+      <article className="w-max lg:w-[400px] h-max gap-2 lg:gap-0 lg:h-65 flex flex-col justify-between">
         <div className="w-full h-40 lg:h-[160px] flex flex-col justify-between">
           <h5 className="font-bold text-[1.3em] lg:text-[40px] leading-[47px]">50+ Beautiful rooms <p>inspiration</p></h5>
           <p className="w-[360px] texxt-[1em] lg:text-[18px] text-[#616161] font-medium">Our designer already made a lot of beautiful prototypes of rooms that inspire you.</p>
@@ -133,7 +133,7 @@ const Carrosel = () => {
       <div className="h-100 lg:h-[520px] w-full lg:w-[850px]flex flex-row relative lg:overflow-auto">
 
         {/* Div com background dinâmico */}
-        <div className="w-85 lg:w-105 absolute -left-2 lg:-left-0 flex flex-row h-full items-end px-4 py-4 z-10" style={{ backgroundImage: `url(${ImgCurrent})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="w-75 lg:w-105 absolute left-0 lg:-left-0 flex flex-row h-full items-end px-4 py-4 z-10" style={{ backgroundImage: `url(${ImgCurrent})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="w-[280px] h-[100px] flex flex-row items-end">
             <div className="w-[200px] h-[100px] justify-center items-center flex flex-col bg-[#FFFFFF] opacity-[.9]">
               <div>
@@ -151,7 +151,7 @@ const Carrosel = () => {
 
         {/* Swiper */}
         <div className=" flex invisible lg:visible flex-col w-full gap-4 justify-between items-end pb-6">
-          <Swiper className="h-[450px] w-2 lg:w-[840px]"  onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
+          <Swiper className="h-[450px] w-0 lg:w-[840px]"  onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
             {ArrSlide.map((Element) => (
               <SwiperSlide key={Element.id} >
                 <img className="w-[360px] h-full" src={Element.imgSrc} alt={`Slide ${Element.id}`} />
