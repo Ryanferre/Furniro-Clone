@@ -22,7 +22,7 @@ const AddedItencartMobile= ()=>{
     }
     console.log(StoreItens)
     return(
-            <div className="fixed h-8 w-10 md:flex sm:hidden lg:flex flex-col mb-4 justify-between items-center" onClick={MoveViewCart}>
+            <div className="fixed z-60 m-98 h-8 w-10 flex lg:hidden flex-col justify-between items-center" onClick={MoveViewCart}>
                 <span className="flex flex-col items-center justify-center bg-black -mr-3 w-[18px] h-[18px] z-0 rounded-[50px]"><p className="text-white text-[12px]">{StoreItens}</p></span>
                 <FaCartShopping />
             </div>

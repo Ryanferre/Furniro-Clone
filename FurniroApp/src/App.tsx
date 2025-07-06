@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom"
 import Footer from './FooterAndHeard/Footer/Footer'
 import Header from './FooterAndHeard/Header/Header'
 import DataCostum from './Settings/HookCostum/Costum'
+import AddedItencartMobile from './Home/CompoHome/CartMobile/cartForMobile'
 
 function App() {
    const [ModalViewCart, setvisiblecart]= useState<string>('hidden')
@@ -23,6 +24,7 @@ function App() {
     <Provider store={Storecart}>
       <DataCostum.Provider value={{ ModalViewCart, MoveModal, ModalViewMenu, MoveModalMenu}}>
           <Header />
+           <AddedItencartMobile />
            <Outlet />
           <Footer />
       </DataCostum.Provider>
