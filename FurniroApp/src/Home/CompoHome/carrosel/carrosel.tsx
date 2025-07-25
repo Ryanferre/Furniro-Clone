@@ -1,9 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from 'swiper';
+import type { SwiperRef } from 'swiper/react';
 import { useRef } from "react";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import '../../../../node_modules/swiper/swiper.css'
+import { useEffect } from "react";
 //imagens do carrosel
 import Slide1 from "./Imgcarrosel/Mask.png"
 import Slide2 from "./Imgcarrosel/Rectangle24.png"
@@ -50,6 +52,16 @@ const Carrosel = () => {
     }
     console.log(currentImg)
   };
+
+  const swiperReff = useRef<SwiperRef>(null);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      swiperReff.current?.swiper?.update();
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
     const [valid1, setvalue1]= useState(false)
     const [valid2, setvalue2]= useState(false)
@@ -151,7 +163,7 @@ const Carrosel = () => {
 
         {/* Swiper */}
         <div className=" flex invisible lg:visible flex-col w-full gap-4 justify-between items-end pb-6">
-          <Swiper className="h-[450px] w-0 lg:w-[840px]"  onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
+          <Swiper className="h-[450px] w-0 lg:w-[840px]" ref={swiperReff} onSwiper={(swiper) => (swiperRef.current = swiper)} spaceBetween={-70} slidesPerView={2} touchRatio={1} onSlideChange={getImgCurret} onInit={() => setImg(ArrSlide[0].imgSrc)} loop={true}>
             {ArrSlide.map((Element) => (
               <SwiperSlide key={Element.id} >
                 <img className="w-[360px] h-full" src={Element.imgSrc} alt={`Slide ${Element.id}`} />

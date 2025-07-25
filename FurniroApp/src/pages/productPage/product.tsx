@@ -64,12 +64,12 @@ const AddInState= ()=>{
         GetItenUrl()
     }, [id])
 
-    const styleListImg= 'w-[76px] h-[80px] boder rounded-[5px]'
+    const styleListImg= 'w-[76px] h-max lg:h-[80px] boder rounded-[5px]'
     return(
         <section>
-            <div className="flex flex-col items-start pl-[90px] bg-[#F9F1E7] justify-center h-[75px] gap-[3px] mt-[4px]">
-                <div className="flex flex-row justify-between items-center w-[300px]">
-                    <div className="flex flex-row justify-between w-[200px] items-center h-8 pr-5 border-r-[2px] border-r-[#9F9F9F]">
+            <div className="flex flex-col items-start lg:pl-[90px] bg-[#F9F1E7] justify-center h-[75px] gap-[3px] mt-[4px]">
+                <div className="flex flex-row justify-between items-center w-90 lg:w-[300px]">
+                    <div className="flex flex-row justify-between w-40 lg:w-[200px] items-center h-8 pr-5 border-r-[2px] border-r-[#9F9F9F]">
                         <p>Home</p>
                         <div className="flex flex-col items-center justify-center h-[20px] gap-[3px] mt-[4px]">
                             <span className="content boder w-[10.4px] h-[2px] transition-transform rotate-[38deg] inline-block bg-black"></span>
@@ -84,9 +84,9 @@ const AddInState= ()=>{
                     <p>{itSelectd.titleName}</p>
                 </div>
             </div>
-            <section className="h-[800px] w-full justify-between pt-9 px-16 border flex flex-row">
-                <div className="flex flex-row w-[520px] justify-between">
-                    <ul className="h-[450px] flex flex-col justify-start gap-7">
+            <section className="h-max lg:h-[800px] lg:max-0 justify-between pt-9 px-5 lg:px-16 flex flex-col lg:flex-row">
+                <div className="flex flex-col-reverse lg:flex-row w-full gap-10 mx-auto lg:w-[520px] justify-between">
+                    <ul className="h-max w-full lg:w-max lg:h-[450px] flex flex-row lg:flex-col justify-start gap-7">
                         <li>
                             <img className={styleListImg} src={itSelectd.imgItem} />
                         </li>
@@ -100,15 +100,15 @@ const AddInState= ()=>{
                             <img className={styleListImg} src={itSelectd.imgItem} />
                         </li>
                     </ul>
-                    <span className="w-[418px] h-[500px]">
+                    <span className="w-full lg:w-[418px] lg:h-[500px]">
                         <img className="w-full h-full rounded-xl" src={`${itSelectd.imgItem}`}/>
                     </span>
                 </div>
-                <div className="flex flex-col justify-between">
-                <div className="w-[560px] h-[560px] border-b border-b-[#D9D9D9]">
-                    <h1 className="text-[42px] font-medium">{itSelectd.titleName}</h1>
-                    <p className="text-[24px] text-[#9F9F9F] font-semibold">{itSelectd.priceDiscount}</p>
-                    <div className="w-[250px] h-10 flex flex-row items-center justify-between mt-2">
+                <div className="flex flex-col gap-5 lg:gap-0 justify-between">
+                 <div className="w-full lg:w-[560px] py-5 lg:py-0 h-max lg:h-[560px] border-b border-b-[#D9D9D9]">
+                    <h1 className="text-[2em] lg:text-[42px] font-medium">{itSelectd.titleName}</h1>
+                    <p className="text-[1.3em] lg:text-[24px] text-[#9F9F9F] font-semibold">{itSelectd.priceDiscount}</p>
+                    <div className="w-67 lg:w-[250px] h-10 flex flex-row items-center justify-between mt-2">
                         <div className="w-[103px] border-r">
                             <ul className="flex flex-row items-center pt-1 h-[30px] overflow-hidden w-[88px] gap-1">
                                 <li>
@@ -130,7 +130,7 @@ const AddInState= ()=>{
                         </div>
                         <p className="text-[16px] text-[#9F9F9F] font-normal">5 Customer Review</p>
                     </div>
-                        <p className="w-[450px] font-medium mt-2">Setting the bar as one of the loudest speakers in its class, 
+                        <p className="w-full lg:w-[450px] font-medium mt-2">Setting the bar as one of the loudest speakers in its class, 
                             the Kilburn is a compact, stout-hearted hero with a well-balanced 
                             audio which boasts a clear midrange and extended highs for a sound.</p>
                         <label className="flex flex-col h-[64px] justify-between mt-4">
@@ -161,16 +161,16 @@ const AddInState= ()=>{
                                 </li>
                             </ul>
                         </label>
-                        <div className="w-[385px] h-[60px] justify-between flex flex-row mt-7">
+                        <div className="w-70 lg:w-[385px] h-12 lg:h-[60px] justify-between flex flex-row mt-7">
                             <div className="flex flex-row justify-around items-center w-[110px] border rounded-[8px]">
                                 <button onClick={Remove}>-</button>
                                 <p>{AddTocart}</p>
                                 <button onClick={Add}>+</button>
                             </div>
-                            <button className="border border-black rounded-[8px] w-[255px] text-[20px] font-medium" onClick={AddInState}>Add To Cart</button>
+                            <button className="border border-black rounded-[8px] w-40 lg:w-[255px] text-[1em] lg:text-[20px] font-medium" onClick={AddInState}>Add To Cart</button>
                         </div>
                     </div>
-                    <div className="flex flex-row w-[290px] h-[180px] gap-4 justify-between">
+                    <div className="flex flex-row w-[290px] h-max lg:h-[180px] gap-4 justify-between">
                         <ul>
                             <li className="mt-[6px] text-[16px] font-medium text-[#9F9F9F]">SKU</li>
                             <li className="mt-[6px] text-[16px] font-medium text-[#9F9F9F]">Category</li>

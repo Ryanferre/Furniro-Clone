@@ -4,11 +4,11 @@ interface Imgs {
 }
 
 const Aboult= ({Img1, Img2}: Imgs)=>{
-    const styleImgs= 'w-[530px] h-[300px] rounded-[5px]'
+    const styleImgs= 'w-30 lg:w-[530px] lg:h-[300px] rounded-[5px]'
     return(
-        <section className="px-20 pt-9 pb-16 flex flex-col items-center gap-7 border border-[#D9D9D9]">
-            <div className="flex flex-col items-center justify-between w-[900px] h-[240px]">
-                <div className="flex flex-row justify-between w-[500px]">
+        <section className="lg:px-20 pt-9 pb-16 flex flex-col items-center gap-7 border border-[#D9D9D9]">
+            <div className="flex flex-col items-center justify-between px-5 lg:px-0 w-full lg:w-[900px] h-max lg:h-[240px]">
+                <div className="flex flex-row justify-between w-full lg:w-[500px]">
                     <h2 className="font-semibold text-[24px]">Description</h2>
                     <h3 className="font-normal text-[24px] text-[#9F9F9F]">Additional Information</h3>
                 </div>
@@ -24,7 +24,7 @@ const Aboult= ({Img1, Img2}: Imgs)=>{
                     allow you to fine tune the controls to your personal preferences while the 
                     guitar-influenced leather strap enables easy and stylish travel.</p>
             </div>
-            <div className="flex flex-row justify-between w-[1090px]">
+            <div className="flex flex-row justify-around lg:justify-between w-full lg:w-[1090px]">
                 <img className={styleImgs} src={Img1} />
                 <img className={styleImgs} src={Img2} />
             </div>

@@ -48,29 +48,29 @@ const ListProctRelated= ()=>{
     }, [])//vai ser acionando na entrada da pagina
 
     return(
-        <section className="px-[80px] pt-[70px]">
+        <section className="lg:px-[60px] pt-[70px]">
             {itensl.length === 0 ? <img className="w-20 m-auto" src={'https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_256.gif'}/> :
-             <ul className="flex flex-row justify-around flex-wrap gap-4">
+             <ul className="flex w-full flex-row px-4 lg:px-0 justify-around lg:justify-center overflow-x-scroll lg:overflow-auto lg:flex-wrap gap-3 lg:gap-6">
                 {itensl.map((Productsl)=>(
-                        <li className="w-[265px] relative" id={`${Productsl.id}`}>
+                        <li className="relative w-45 lg:w-max" id={`${Productsl.id}`}>
                         {/*conteudo do json server */}
-                        <div className="flex flex-col items-center bg-[#F4F5F7]">
+                        <div className="bg-[#F4F5F7] pb-8 flex flex-col gap-3">
                           <img className="w-full" src={Productsl.imgItem} />
                           <Link key={Productsl.id} to={`/Productcart/${Productsl.id}`}>
-                            <div className="w-[230px] h-[120px] flex flex-col gap-1 pt-2">
+                            <article className="w-40 px-3 lg:px-0 lg:w-[230px] mx-auto h-[120px] flex flex-col gap-1 pt-2">
                                 <p className="font-semibold text-[19px]">{Productsl.titleName}</p>
                                 <p>{Productsl.description}</p>
-                                <div className="flex flex-row items-center w-full justify-between">
-                                <p className="font-semibold text-[19px]">{Productsl.priceDiscount}</p>
-                                <p className="text-[#898989] font-medium text-[16px]">{Productsl.priceTotal}</p>
+                                <div className="flex flex-col lg:flex-row items-baseline lg:items-center w-full justify-between">
+                                 <p className="font-semibold text-[19px]">{Productsl.priceDiscount}</p>
+                                 <p className="text-[#898989] font-medium text-[16px]">{Productsl.priceTotal}</p>
                                 </div>
-                            </div>
+                            </article>
                           </Link>
                           {/*Contedo do hover */}
-                          <div className={`id${Productsl.id} absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-[280px] cursor-pointer`}>
+                          <div className={`id${Productsl.id} absolute flex flex-col opacity-0 hover:opacity-100 hover:bg-[#0000008a] items-center justify-center inset-0 h-42 lg:h-75 cursor-pointer`}>
                                 <div className="w-full h-[110px] flex flex-col items-center justify-between pt-5">
-                                    <button className="w-[202px] h-[48px] bg-white font-semibold text-[16px] text-[#B88E2F]" onClick={AddItem}>Add to cart</button>
-                                    <ul className="flex flex-row items-center justify-between w-[230px]">
+                                    <button className="w-30 lg:w-[202px] h-10 lg:h-[48px] bg-white font-semibold text-[16px] text-[#B88E2F]" onClick={AddItem}>Add to cart</button>
+                                    <ul className="flex flex-col lg:flex-row items-center justify-between w-full px-2 lg:px-0 lg:w-[230px]">
                                         <li className={StyleIconsHover}>
                                             <svg className="w-[16px] h-[30px]" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12 10.6667C11.4747 10.6667 11 10.8733 10.644 11.2047L5.94 8.46667C5.97333 8.31334 6 8.16 6 8C6 7.84 5.97333 7.68667 5.94 7.53334L10.64 4.79334C11 5.12667 11.4733 5.33334 12 5.33334C13.1067 5.33334 14 4.44 14 3.33334C14 2.22667 13.1067 1.33334 12 1.33334C10.8933 1.33334 10 2.22667 10 3.33334C10 3.49334 10.0267 3.64667 10.06 3.8L5.36 6.54C5 6.20667 4.52667 6 4 6C2.89333 6 2 6.89334 2 8C2 9.10667 2.89333 10 4 10C4.52667 10 5 9.79333 5.36 9.46L10.0587 12.2053C10.0211 12.3563 10.0014 12.5111 10 12.6667C10 13.0622 10.1173 13.4489 10.3371 13.7778C10.5568 14.1067 10.8692 14.3631 11.2346 14.5144C11.6001 14.6658 12.0022 14.7054 12.3902 14.6282C12.7781 14.5511 13.1345 14.3606 13.4142 14.0809C13.6939 13.8012 13.8844 13.4448 13.9616 13.0568C14.0387 12.6689 13.9991 12.2668 13.8478 11.9013C13.6964 11.5358 13.44 11.2235 13.1111 11.0037C12.7822 10.784 12.3956 10.6667 12 10.6667Z" fill="white"/>

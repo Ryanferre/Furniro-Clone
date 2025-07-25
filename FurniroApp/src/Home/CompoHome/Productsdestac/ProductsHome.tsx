@@ -59,7 +59,7 @@ const Destaque: React.FC = ()=>{
                         <li className="relative w-45 lg:w-max" key={Element.id} id={`${Element.id}`}>
                             <div className="bg-[#F4F5F7] pb-8 flex flex-col gap-3">
                                 <img className="w-[260px]" src={Element.imgItem}></img>
-                                <article className="flex flex-col justify-betweenh-[100px] px-2">
+                                <article className="flex flex-col justify-between h-[100px] px-2">
                                     <h5 className="text-[18px] font-semibold">{Element.titleName}</h5>
                                     <p className="text-[16px] text-[#898989]">{Element.name}</p>
                                     <p className="text-[17px] font-semibold">{Element.priceDiscount}</p>

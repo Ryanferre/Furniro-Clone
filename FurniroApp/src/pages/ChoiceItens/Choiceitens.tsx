@@ -133,7 +133,7 @@ const ChoiceItens = ()=>{
         <>
           <div className="w-full h-[310px] bg-contain flex flex-col items-center justify-center" style={{backgroundImage: 'url(https://i.postimg.cc/Vk5jnHQM/Shop-Banner.png'}}>
                 <h1 className="font-semibold text-[44px]">Shop</h1>
-                <div className="flex flex-row items-center justify-around w-[120px]">
+                <div className="flex flex-row items-center justify-around w-[118px]">
                     <p className="font-semibold text-[16px]">Home</p>
                     <div className="flex flex-col items-center justify-center h-[20px] gap-[3px] mt-[4px]">
                         <span className="content boder w-[10.4px] h-[2px] transition-transform rotate-[38deg] inline-block bg-black"></span>
@@ -142,9 +142,9 @@ const ChoiceItens = ()=>{
                     <p>Shop</p>
                 </div>
             </div>
-            <section className="flex flex-row h-[600px] items-center justify-center px-28">
-                <div className="flex flex-row w-full justify-between">
-                  <div className="flex flex-col h-[350px] w-[700px] items-center justify-between">
+            <section className="flex flex-row h-max lg:h-[600px] w-full items-center justify-center px-0 lg:px-28">
+                <div className="flex flex-col lg:flex-row w-full justify-between">
+                  <div className="flex flex-col h-[350px] w-full lg:w-[700px] items-center justify-between">
                       <ul className="flex flex-row w-full bg-[#F9F1E7] justify-around py-4 px-[120px] gap-5">
                           <li>
                               <p>Product</p>
@@ -174,7 +174,7 @@ const ChoiceItens = ()=>{
                           ))}
                       </ul>
                   </div>
-                  <div className="bg-[#F9F1E7] w-[380px] h-[380px] flex flex-col pb-11 pt-4 justify-between items-center">
+                  <div className="bg-[#F9F1E7] w-full lg:w-[380px] h-[380px] flex flex-col pb-11 pt-4 justify-between items-center">
                       <h2 className="font-semibold text-[35px]">Cart Totals</h2>
                       <div className="h-20 w-72 flex flex-col justify-between">
                          <div className="flex flex-row justify-between w-60">
